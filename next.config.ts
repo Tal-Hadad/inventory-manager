@@ -1,8 +1,21 @@
 import type { NextConfig } from "next";
 
+const imageHostnames = [
+  "lh3.googleusercontent.com",
+  "googleusercontent.com",
+  "avatars.githubusercontent.com",
+];
+
 const nextConfig: NextConfig = {
-  /* config options here */
   reactCompiler: true,
+  images: {
+    remotePatterns: imageHostnames.map((hostname) => ({
+      protocol: "https",
+      hostname,
+      port: "",
+      pathname: "/**",
+    })),
+  },
 };
 
 export default nextConfig;

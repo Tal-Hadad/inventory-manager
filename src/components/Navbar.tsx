@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { Bell, Menu, Settings, Search } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import ThemeToggle from "./ui/ThemeToggle";
+import ProfileCircle from "./ProfileCircle";
 
 type NavbarProps = {
   isExpanded: boolean;
@@ -37,12 +37,8 @@ export default function Navbar({ isExpanded, onToggleSidebar }: NavbarProps) {
       <div className="flex items-center gap-5">
         <div className="hidden items-center gap-5 md:flex">
           <ThemeToggle />
-          <h1>Profile</h1>
+          <ProfileCircle />
         </div>
-
-        <Link href="/settings" aria-label="Settings">
-          <Settings className="text-gray-500 dark:text-white" />
-        </Link>
       </div>
     </header>
   );
