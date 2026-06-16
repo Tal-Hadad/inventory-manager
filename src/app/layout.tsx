@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "./theme-provider";
-import DashboardWrapper from "./dashboardWrapper";
 import Providers from "./Providers";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,18 +17,16 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.className} ${inter.className} h-full antialiased`}
+      className={`${inter.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Providers>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <DashboardWrapper>{children}</DashboardWrapper>
-          </ThemeProvider>
+        <Providers
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
         </Providers>
       </body>
     </html>
