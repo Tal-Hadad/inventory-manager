@@ -10,9 +10,12 @@
  * 🟢 You can import this file directly.
  */
 
-globalThis['__dirname'] = '/'
+import * as process from 'node:process'
+import * as path from 'node:path'
+import { fileURLToPath } from 'node:url'
+globalThis['__dirname'] = path.dirname(fileURLToPath(import.meta.url))
 
-import * as runtime from "@prisma/client/runtime/wasm-compiler-edge"
+import * as runtime from "@prisma/client/runtime/client"
 import * as $Enums from "./enums"
 import * as $Class from "./internal/class"
 import * as Prisma from "./internal/prismaNamespace"
@@ -58,3 +61,48 @@ export type User = Prisma.UserModel
  * 
  */
 export type VerificationToken = Prisma.VerificationTokenModel
+/**
+ * Model Product
+ * 
+ */
+export type Product = Prisma.ProductModel
+/**
+ * Model Sale
+ * 
+ */
+export type Sale = Prisma.SaleModel
+/**
+ * Model Purchase
+ * 
+ */
+export type Purchase = Prisma.PurchaseModel
+/**
+ * Model ExpenseCategory
+ * 
+ */
+export type ExpenseCategory = Prisma.ExpenseCategoryModel
+/**
+ * Model Expense
+ * 
+ */
+export type Expense = Prisma.ExpenseModel
+/**
+ * Model DemoProduct
+ * 
+ */
+export type DemoProduct = Prisma.DemoProductModel
+/**
+ * Model DemoSale
+ * 
+ */
+export type DemoSale = Prisma.DemoSaleModel
+/**
+ * Model DemoPurchase
+ * 
+ */
+export type DemoPurchase = Prisma.DemoPurchaseModel
+/**
+ * Model DemoExpense
+ * 
+ */
+export type DemoExpense = Prisma.DemoExpenseModel

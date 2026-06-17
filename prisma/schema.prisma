@@ -5,7 +5,6 @@
 generator client {
   provider = "prisma-client"
   output   = "app/generated/prisma"
-  runtime  = "vercel-edge"
 }
 
 datasource db {
@@ -58,6 +57,11 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
+  products          Product[]
+  sales             Sale[]
+  purchases         Purchase[]
+  expenseCategories ExpenseCategory[]
+  expenses          Expense[]
   @@map("users")
 }
 
@@ -69,4 +73,152 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verification_tokens")
+}
+
+
+// user owned tables
+
+model Product {
+  id             String    @id @default(cuid())
+  userId         String    @map("user_id")
+  name           String
+  sku            String?
+  unit           String?
+  price          Decimal   @db.Decimal(10, 2)
+  rating         Decimal?  @db.Decimal(2, 1)
+  stockQuantity  Int       @default(0) @map("stock_quantity")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sales          Sale[]
+  purchases      Purchase[]
+
+  @@map("products")
+  @@index([userId])
+  @@unique([userId, sku], map: "products_user_sku_unique")
+}
+
+model Sale {
+  id           String    @id @default(cuid())
+  userId       String    @map("user_id")
+  productId    String    @map("product_id")
+  quantity     Int
+  unitPrice    Decimal   @db.Decimal(10, 2) @map("unit_price")
+  totalAmount  Decimal   @db.Decimal(10, 2) @map("total_amount")
+  soldAt       DateTime  @default(now()) @map("sold_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product      Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("sales")
+  @@index([userId, soldAt])
+  @@index([productId, soldAt])
+}
+
+model Purchase {
+  id          String    @id @default(cuid())
+  userId      String    @map("user_id")
+  productId   String    @map("product_id")
+  quantity    Int
+  unitCost    Decimal   @db.Decimal(10, 2) @map("unit_cost")
+  totalCost   Decimal   @db.Decimal(10, 2) @map("total_cost")
+  purchasedAt DateTime  @default(now()) @map("purchased_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("purchases")
+  @@index([userId, purchasedAt])
+  @@index([productId, purchasedAt])
+}
+
+
+model ExpenseCategory {
+  id        String    @id @default(cuid())
+  userId    String    @map("user_id")
+  name      String
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expenses  Expense[]
+
+  @@map("expense_categories")
+  @@index([userId, name], map: "expense_categories_user_name_idx")
+}
+
+model Expense {
+  id          String    @id @default(cuid())
+  userId      String    @map("user_id")
+  categoryId  String?   @map("category_id")
+  description String?
+  amount      Decimal   @db.Decimal(10, 2)
+  spentAt     DateTime  @default(now()) @map("spent_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category    ExpenseCategory?  @relation(fields: [categoryId], references: [id])
+
+  @@map("expenses")
+  @@index([userId, spentAt])
+  @@index([categoryId])
+}
+
+
+//demo tables
+
+model DemoProduct {
+  id            String    @id @default(cuid())
+  name          String
+  sku           String?
+  unit          String?
+  price         Decimal   @db.Decimal(10, 2)
+  rating        Decimal?  @db.Decimal(2, 1)
+  stockQuantity Int       @default(0) @map("stock_quantity")
+
+  sales         DemoSale[]
+  purchases     DemoPurchase[]
+
+  @@map("demo_products")
+}
+
+
+model DemoSale {
+  id           String      @id @default(cuid())
+  productId    String      @map("product_id")
+  quantity     Int
+  unitPrice    Decimal     @db.Decimal(10, 2) @map("unit_price")
+  totalAmount  Decimal     @db.Decimal(10, 2) @map("total_amount")
+  soldAt       DateTime    @default(now()) @map("sold_at")
+
+  product      DemoProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("demo_sales")
+  @@index([productId, soldAt])
+}
+
+model DemoPurchase {
+  id          String      @id @default(cuid())
+  productId   String      @map("product_id")
+  quantity    Int
+  unitCost    Decimal     @db.Decimal(10, 2) @map("unit_cost")
+  totalCost   Decimal     @db.Decimal(10, 2) @map("total_cost")
+  purchasedAt DateTime    @default(now()) @map("purchased_at")
+
+  product     DemoProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("demo_purchases")
+  @@index([productId, purchasedAt])
+}
+
+model DemoExpense {
+  id          String    @id @default(cuid())
+  category    String
+  description String?
+  amount      Decimal   @db.Decimal(10, 2)
+  spentAt     DateTime  @default(now()) @map("spent_at")
+
+  @@map("demo_expenses")
 }

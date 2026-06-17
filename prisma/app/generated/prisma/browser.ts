@@ -37,3 +37,48 @@ export type User = Prisma.UserModel
  * 
  */
 export type VerificationToken = Prisma.VerificationTokenModel
+/**
+ * Model Product
+ * 
+ */
+export type Product = Prisma.ProductModel
+/**
+ * Model Sale
+ * 
+ */
+export type Sale = Prisma.SaleModel
+/**
+ * Model Purchase
+ * 
+ */
+export type Purchase = Prisma.PurchaseModel
+/**
+ * Model ExpenseCategory
+ * 
+ */
+export type ExpenseCategory = Prisma.ExpenseCategoryModel
+/**
+ * Model Expense
+ * 
+ */
+export type Expense = Prisma.ExpenseModel
+/**
+ * Model DemoProduct
+ * 
+ */
+export type DemoProduct = Prisma.DemoProductModel
+/**
+ * Model DemoSale
+ * 
+ */
+export type DemoSale = Prisma.DemoSaleModel
+/**
+ * Model DemoPurchase
+ * 
+ */
+export type DemoPurchase = Prisma.DemoPurchaseModel
+/**
+ * Model DemoExpense
+ * 
+ */
+export type DemoExpense = Prisma.DemoExpenseModel
