@@ -1,8 +1,13 @@
 import type { DashboardOverview, DashboardPeriod } from "./dashboardTypes";
 import { prisma } from "@/lib/prisma";
+import { buildDashboardOverview } from "./buildDashboardOverview";
 import { getPeriodRanges } from "./getPeriodRanges";
-import { buildSalesChart } from "./buildSalesChart";
-import { buildPurchaseChart } from "./buildPurchaseChart";
+
+function getPurchaseChartStart(): Date {
+  const now = new Date();
+
+  return new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 5, 1));
+}
 
 export async function getDemoDashboardOverview(
   period: DashboardPeriod = "last30Days",
@@ -10,9 +15,7 @@ export async function getDemoDashboardOverview(
   const { currentStart, currentEnd, previousStart, previousEnd } =
     getPeriodRanges(period);
 
-  const purchaseChartStart = new Date(
-    Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth() - 5, 1),
-  );
+  const purchaseChartStart = getPurchaseChartStart();
 
   const [
     salesAgg,
@@ -132,75 +135,37 @@ export async function getDemoDashboardOverview(
     }),
   ]);
 
-  const currentRevenue = Number(salesAgg._sum.totalAmount ?? 0);
-  const previousRevenue = Number(previousSalesAgg._sum.totalAmount ?? 0);
-
-  const salesChangePercentage =
-    previousRevenue === 0
-      ? 0
-      : ((currentRevenue - previousRevenue) / previousRevenue) * 100;
-
-  const salesChart = buildSalesChart(salesRows, period, currentStart);
-  const purchaseChart = buildPurchaseChart(
-    purchaseRows.map((row) => ({
-      purchasedAt: row.purchasedAt,
-      totalCost: row.totalCost.toNumber(),
-    })),
-  );
-
-  const currentPurchaseCost = Number(purchaseAgg._sum.totalCost ?? 0);
-  const previousPurchaseCost = Number(previousPurchaseAgg._sum.totalCost ?? 0);
-
-  const purchaseChangePercentage =
-    previousPurchaseCost === 0
-      ? 0
-      : ((currentPurchaseCost - previousPurchaseCost) / previousPurchaseCost) *
-        100;
-
   const productIds = groupedSales.map((item) => item.productId);
+
   const products = productIds.length
     ? await prisma.demoProduct.findMany({
-        where: { id: { in: productIds } },
-        select: { id: true, name: true, sku: true, price: true, rating: true },
+        where: {
+          id: { in: productIds },
+        },
+        select: {
+          id: true,
+          name: true,
+          sku: true,
+          price: true,
+          rating: true,
+        },
       })
     : [];
 
-  return {
+  return buildDashboardOverview({
     isDemo: true,
-    salesChart,
-    purchaseChart,
-    popularProducts: groupedSales.map((item) => {
-      const product = products.find((p) => p.id === item.productId);
-
-      return {
-        productId: item.productId,
-        name: product?.name ?? "Unknown",
-        sku: product?.sku ?? null,
-        quantitySold: Number(item._sum.quantity ?? 0),
-        revenue: Number(item._sum.totalAmount ?? 0),
-        price: Number(product?.price ?? 0),
-        rating: Number(product?.rating ?? 0),
-      };
-    }),
-    salesSummary: {
-      totalRevenue: currentRevenue,
-      totalSalesCount: salesAgg._count.id,
-      totalUnitsSold: Number(salesAgg._sum.quantity ?? 0),
-      changePercentage: Number(salesChangePercentage.toFixed(1)),
-    },
-    purchaseSummary: {
-      totalPurchaseCost: currentPurchaseCost,
-      totalPurchaseCount: purchaseAgg._count.id,
-      totalPurchasedUnits: Number(purchaseAgg._sum.quantity ?? 0),
-      changePercentage: Number(purchaseChangePercentage.toFixed(1)),
-    },
-    expenseSummary: {
-      totalExpenses: Number(expenseAgg._sum.amount ?? 0),
-      totalExpenseCount: expenseAgg._count.id,
-      topCategories: groupedExpenses.map((item) => ({
-        category: item.category,
-        amount: Number(item._sum.amount ?? 0),
-      })),
-    },
-  };
+    period,
+    currentStart,
+    salesAgg,
+    purchaseAgg,
+    expenseAgg,
+    previousSalesAgg,
+    previousPurchaseAgg,
+    salesRows,
+    purchaseRows,
+    groupedSales,
+    groupedExpenses,
+    products,
+    getExpenseCategoryName: (item) => item.category ?? "Uncategorized",
+  });
 }

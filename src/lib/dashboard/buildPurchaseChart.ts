@@ -8,13 +8,17 @@ export function buildPurchaseChart(rows: PurchaseRow[]) {
   const start = new Date(
     Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 5, 1),
   );
+
   const buckets = new Map<string, number>();
 
   for (let index = 0; index < 6; index += 1) {
     const date = new Date(
       Date.UTC(start.getUTCFullYear(), start.getUTCMonth() + index, 1),
     );
-    const key = `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}`;
+
+    const key = `${date.getUTCFullYear()}-${String(
+      date.getUTCMonth() + 1,
+    ).padStart(2, "0")}`;
 
     buckets.set(key, 0);
   }
