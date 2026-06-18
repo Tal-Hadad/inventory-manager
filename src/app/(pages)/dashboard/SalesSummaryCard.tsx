@@ -108,7 +108,7 @@ export default function SalesSummeryCard({
     : "$0";
 
   return (
-    <div className="row-span-3 rounded-2xl bg-white pb-16 shadow-md dark:bg-zinc-900 xl:row-span-6">
+    <div className="row-span-3 rounded-2xl pb-16 shadow-md dark:bg-zinc-900 xl:row-span-6">
       <h3 className="px-7 pt-5 pb-2 text-lg font-semibold">Sales Summary</h3>
       <hr />
 
@@ -117,10 +117,10 @@ export default function SalesSummeryCard({
           <p className="text-xs text-gray-400">Value</p>
 
           <div className="flex items-center text-2xl font-extrabold">
+            $
             {salesSummary.totalRevenue.toLocaleString("en", {
               maximumFractionDigits: 0,
             })}
-
             <div
               className={`ml-2 flex items-center text-sm font-medium ${
                 isPositive ? "text-green-500" : "text-red-500"
@@ -154,7 +154,7 @@ export default function SalesSummeryCard({
       </section>
 
       <section className={isLoading ? "opacity-60 transition-opacity" : ""}>
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={450}>
           <BarChart
             key={period}
             data={salesChart}
@@ -229,9 +229,9 @@ export default function SalesSummeryCard({
 
         <div>
           <hr />
-          <div className="text-right">
+          <div className="text-center">
             <p className="text-sm text-gray-500 dark:text-gray-400 mr-5">
-              Highest Sales Date:{" "}
+              Highest Sale Date:{" "}
               <span className="font-semibold text-zinc-900 dark:text-white">
                 {highestSalesAmount} on {highestSalesDateLabel}
               </span>

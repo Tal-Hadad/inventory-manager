@@ -3,6 +3,7 @@ export type DashboardPeriod =
   | "last30Days"
   | "last90Days"
   | "last12Months";
+
 export type DashboardOverview = {
   isDemo: boolean;
   popularProducts: Array<{
@@ -28,7 +29,12 @@ export type DashboardOverview = {
     totalPurchaseCost: number;
     totalPurchaseCount: number;
     totalPurchasedUnits: number;
+    changePercentage: number;
   };
+  purchaseChart: Array<{
+    date: string;
+    totalPurchased: number;
+  }>;
   expenseSummary: {
     totalExpenses: number;
     totalExpenseCount: number;

@@ -11,7 +11,7 @@ export default function PopularProductsCard({
   products = [],
 }: PopularProductsCardProps) {
   return (
-    <div className="row-span-3 xl:row-span-6 bg-white dark:bg-zinc-900  shadow-md rounded-2xl pb-16">
+    <div className="row-span-3 xl:row-span-6 dark:bg-zinc-900  shadow-md rounded-2xl pb-16">
       <h3 className="text-lg font-semibold px-7 pt-5 pb-2">Popular Products</h3>
       <hr />
       <div className="overflow-auto h-full">

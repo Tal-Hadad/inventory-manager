@@ -3,6 +3,7 @@ import PopularProductsCard from "@/app/(pages)/dashboard/PopularProductsCard";
 import SalesSummeryCard from "@/app/(pages)/dashboard/SalesSummaryCard";
 import { getDemoDashboardOverview } from "@/lib/dashboard/getDemoDashboardOverview";
 import { getUserDashboardOverview } from "@/lib/dashboard/getUserDashboardOverview";
+import PurchaseSummaryCard from "./PurchaseSummaryCard";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -27,7 +28,10 @@ export default async function DashboardPage() {
           initialSalesChart={data.salesChart}
         />
 
-        <div className="row-span-3 bg-gray-500 xl:row-span-6" />
+        <PurchaseSummaryCard
+          purchaseSummary={data.purchaseSummary}
+          purchaseChart={data.purchaseChart}
+        />
         <div className="row-span-2 col-span-1 bg-gray-500 md:col-span-2 xl:row-span-3 xl:col-span-1" />
         <div className="row-span-3 bg-gray-500" />
         <div className="bg-gray-500 md:row-span-1 xl:row-span-2" />
