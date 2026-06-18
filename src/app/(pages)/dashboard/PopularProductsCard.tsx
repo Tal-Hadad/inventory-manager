@@ -47,7 +47,7 @@ export default function PopularProductsCard({
               <button className="p-2 rounded-full bg-blue-100 text-blue-600 mr-2 hover:bg-blue-200 hover:text-blue-700">
                 <ShoppingBag className="w-4 h-4" />
               </button>
-              {Math.round(product.quantitySold)}k sold
+              {Math.round(product.quantitySold)}sold
             </section>
           </div>
         ))}

@@ -45,6 +45,7 @@ export type DemoPurchaseMinAggregateOutputType = {
   unitCost: runtime.Decimal | null
   totalCost: runtime.Decimal | null
   purchasedAt: Date | null
+  createdAt: Date | null
 }
 
 export type DemoPurchaseMaxAggregateOutputType = {
@@ -54,6 +55,7 @@ export type DemoPurchaseMaxAggregateOutputType = {
   unitCost: runtime.Decimal | null
   totalCost: runtime.Decimal | null
   purchasedAt: Date | null
+  createdAt: Date | null
 }
 
 export type DemoPurchaseCountAggregateOutputType = {
@@ -63,6 +65,7 @@ export type DemoPurchaseCountAggregateOutputType = {
   unitCost: number
   totalCost: number
   purchasedAt: number
+  createdAt: number
   _all: number
 }
 
@@ -86,6 +89,7 @@ export type DemoPurchaseMinAggregateInputType = {
   unitCost?: true
   totalCost?: true
   purchasedAt?: true
+  createdAt?: true
 }
 
 export type DemoPurchaseMaxAggregateInputType = {
@@ -95,6 +99,7 @@ export type DemoPurchaseMaxAggregateInputType = {
   unitCost?: true
   totalCost?: true
   purchasedAt?: true
+  createdAt?: true
 }
 
 export type DemoPurchaseCountAggregateInputType = {
@@ -104,6 +109,7 @@ export type DemoPurchaseCountAggregateInputType = {
   unitCost?: true
   totalCost?: true
   purchasedAt?: true
+  createdAt?: true
   _all?: true
 }
 
@@ -200,6 +206,7 @@ export type DemoPurchaseGroupByOutputType = {
   unitCost: runtime.Decimal
   totalCost: runtime.Decimal
   purchasedAt: Date
+  createdAt: Date
   _count: DemoPurchaseCountAggregateOutputType | null
   _avg: DemoPurchaseAvgAggregateOutputType | null
   _sum: DemoPurchaseSumAggregateOutputType | null
@@ -232,6 +239,7 @@ export type DemoPurchaseWhereInput = {
   unitCost?: Prisma.DecimalFilter<"DemoPurchase"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost?: Prisma.DecimalFilter<"DemoPurchase"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Prisma.DateTimeFilter<"DemoPurchase"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"DemoPurchase"> | Date | string
   product?: Prisma.XOR<Prisma.DemoProductScalarRelationFilter, Prisma.DemoProductWhereInput>
 }
 
@@ -242,6 +250,7 @@ export type DemoPurchaseOrderByWithRelationInput = {
   unitCost?: Prisma.SortOrder
   totalCost?: Prisma.SortOrder
   purchasedAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   product?: Prisma.DemoProductOrderByWithRelationInput
 }
 
@@ -255,6 +264,7 @@ export type DemoPurchaseWhereUniqueInput = Prisma.AtLeast<{
   unitCost?: Prisma.DecimalFilter<"DemoPurchase"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost?: Prisma.DecimalFilter<"DemoPurchase"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Prisma.DateTimeFilter<"DemoPurchase"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"DemoPurchase"> | Date | string
   product?: Prisma.XOR<Prisma.DemoProductScalarRelationFilter, Prisma.DemoProductWhereInput>
 }, "id">
 
@@ -265,6 +275,7 @@ export type DemoPurchaseOrderByWithAggregationInput = {
   unitCost?: Prisma.SortOrder
   totalCost?: Prisma.SortOrder
   purchasedAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   _count?: Prisma.DemoPurchaseCountOrderByAggregateInput
   _avg?: Prisma.DemoPurchaseAvgOrderByAggregateInput
   _max?: Prisma.DemoPurchaseMaxOrderByAggregateInput
@@ -282,6 +293,7 @@ export type DemoPurchaseScalarWhereWithAggregatesInput = {
   unitCost?: Prisma.DecimalWithAggregatesFilter<"DemoPurchase"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost?: Prisma.DecimalWithAggregatesFilter<"DemoPurchase"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Prisma.DateTimeWithAggregatesFilter<"DemoPurchase"> | Date | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"DemoPurchase"> | Date | string
 }
 
 export type DemoPurchaseCreateInput = {
@@ -290,6 +302,7 @@ export type DemoPurchaseCreateInput = {
   unitCost: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost: runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Date | string
+  createdAt?: Date | string
   product: Prisma.DemoProductCreateNestedOneWithoutPurchasesInput
 }
 
@@ -300,6 +313,7 @@ export type DemoPurchaseUncheckedCreateInput = {
   unitCost: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost: runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Date | string
+  createdAt?: Date | string
 }
 
 export type DemoPurchaseUpdateInput = {
@@ -308,6 +322,7 @@ export type DemoPurchaseUpdateInput = {
   unitCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   product?: Prisma.DemoProductUpdateOneRequiredWithoutPurchasesNestedInput
 }
 
@@ -318,6 +333,7 @@ export type DemoPurchaseUncheckedUpdateInput = {
   unitCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DemoPurchaseCreateManyInput = {
@@ -327,6 +343,7 @@ export type DemoPurchaseCreateManyInput = {
   unitCost: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost: runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Date | string
+  createdAt?: Date | string
 }
 
 export type DemoPurchaseUpdateManyMutationInput = {
@@ -335,6 +352,7 @@ export type DemoPurchaseUpdateManyMutationInput = {
   unitCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DemoPurchaseUncheckedUpdateManyInput = {
@@ -344,6 +362,7 @@ export type DemoPurchaseUncheckedUpdateManyInput = {
   unitCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DemoPurchaseListRelationFilter = {
@@ -363,6 +382,7 @@ export type DemoPurchaseCountOrderByAggregateInput = {
   unitCost?: Prisma.SortOrder
   totalCost?: Prisma.SortOrder
   purchasedAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type DemoPurchaseAvgOrderByAggregateInput = {
@@ -378,6 +398,7 @@ export type DemoPurchaseMaxOrderByAggregateInput = {
   unitCost?: Prisma.SortOrder
   totalCost?: Prisma.SortOrder
   purchasedAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type DemoPurchaseMinOrderByAggregateInput = {
@@ -387,6 +408,7 @@ export type DemoPurchaseMinOrderByAggregateInput = {
   unitCost?: Prisma.SortOrder
   totalCost?: Prisma.SortOrder
   purchasedAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type DemoPurchaseSumOrderByAggregateInput = {
@@ -443,6 +465,7 @@ export type DemoPurchaseCreateWithoutProductInput = {
   unitCost: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost: runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Date | string
+  createdAt?: Date | string
 }
 
 export type DemoPurchaseUncheckedCreateWithoutProductInput = {
@@ -451,6 +474,7 @@ export type DemoPurchaseUncheckedCreateWithoutProductInput = {
   unitCost: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost: runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Date | string
+  createdAt?: Date | string
 }
 
 export type DemoPurchaseCreateOrConnectWithoutProductInput = {
@@ -489,6 +513,7 @@ export type DemoPurchaseScalarWhereInput = {
   unitCost?: Prisma.DecimalFilter<"DemoPurchase"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost?: Prisma.DecimalFilter<"DemoPurchase"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Prisma.DateTimeFilter<"DemoPurchase"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"DemoPurchase"> | Date | string
 }
 
 export type DemoPurchaseCreateManyProductInput = {
@@ -497,6 +522,7 @@ export type DemoPurchaseCreateManyProductInput = {
   unitCost: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost: runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Date | string
+  createdAt?: Date | string
 }
 
 export type DemoPurchaseUpdateWithoutProductInput = {
@@ -505,6 +531,7 @@ export type DemoPurchaseUpdateWithoutProductInput = {
   unitCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DemoPurchaseUncheckedUpdateWithoutProductInput = {
@@ -513,6 +540,7 @@ export type DemoPurchaseUncheckedUpdateWithoutProductInput = {
   unitCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DemoPurchaseUncheckedUpdateManyWithoutProductInput = {
@@ -521,6 +549,7 @@ export type DemoPurchaseUncheckedUpdateManyWithoutProductInput = {
   unitCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -532,6 +561,7 @@ export type DemoPurchaseSelect<ExtArgs extends runtime.Types.Extensions.Internal
   unitCost?: boolean
   totalCost?: boolean
   purchasedAt?: boolean
+  createdAt?: boolean
   product?: boolean | Prisma.DemoProductDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["demoPurchase"]>
 
@@ -542,6 +572,7 @@ export type DemoPurchaseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   unitCost?: boolean
   totalCost?: boolean
   purchasedAt?: boolean
+  createdAt?: boolean
   product?: boolean | Prisma.DemoProductDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["demoPurchase"]>
 
@@ -552,6 +583,7 @@ export type DemoPurchaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   unitCost?: boolean
   totalCost?: boolean
   purchasedAt?: boolean
+  createdAt?: boolean
   product?: boolean | Prisma.DemoProductDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["demoPurchase"]>
 
@@ -562,9 +594,10 @@ export type DemoPurchaseSelectScalar = {
   unitCost?: boolean
   totalCost?: boolean
   purchasedAt?: boolean
+  createdAt?: boolean
 }
 
-export type DemoPurchaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productId" | "quantity" | "unitCost" | "totalCost" | "purchasedAt", ExtArgs["result"]["demoPurchase"]>
+export type DemoPurchaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productId" | "quantity" | "unitCost" | "totalCost" | "purchasedAt" | "createdAt", ExtArgs["result"]["demoPurchase"]>
 export type DemoPurchaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   product?: boolean | Prisma.DemoProductDefaultArgs<ExtArgs>
 }
@@ -587,6 +620,7 @@ export type $DemoPurchasePayload<ExtArgs extends runtime.Types.Extensions.Intern
     unitCost: runtime.Decimal
     totalCost: runtime.Decimal
     purchasedAt: Date
+    createdAt: Date
   }, ExtArgs["result"]["demoPurchase"]>
   composites: {}
 }
@@ -1017,6 +1051,7 @@ export interface DemoPurchaseFieldRefs {
   readonly unitCost: Prisma.FieldRef<"DemoPurchase", 'Decimal'>
   readonly totalCost: Prisma.FieldRef<"DemoPurchase", 'Decimal'>
   readonly purchasedAt: Prisma.FieldRef<"DemoPurchase", 'DateTime'>
+  readonly createdAt: Prisma.FieldRef<"DemoPurchase", 'DateTime'>
 }
     
 

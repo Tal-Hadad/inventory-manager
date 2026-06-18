@@ -1,3 +1,10 @@
+import {
+  createSeededRandom,
+  pickOne,
+  randomInt,
+  roundToTwo,
+} from "./seedUtils";
+
 export type DemoExpenseSeed = {
   category: string;
   description: string;
@@ -5,77 +12,154 @@ export type DemoExpenseSeed = {
   spentAt: Date;
 };
 
-export const demoExpenses: DemoExpenseSeed[] = [
+const demoExpenseTemplates = [
   {
     category: "Rent",
-    description: "Monthly store rent",
-    amount: 3000.0,
-    spentAt: new Date("2026-05-27T08:00:00.000Z"),
+    descriptions: ["Monthly store rent"],
+    minAmount: 2800,
+    maxAmount: 3200,
+    monthly: true,
   },
   {
     category: "Utilities",
-    description: "Electricity and water",
-    amount: 650.0,
-    spentAt: new Date("2026-05-29T10:15:00.000Z"),
+    descriptions: [
+      "Electricity and water",
+      "Extra cooling costs",
+      "Power usage adjustment",
+    ],
+    minAmount: 150,
+    maxAmount: 700,
+    monthly: false,
   },
   {
     category: "Marketing",
-    description: "Instagram and local ads",
-    amount: 450.0,
-    spentAt: new Date("2026-05-31T12:30:00.000Z"),
+    descriptions: [
+      "Instagram and local ads",
+      "Weekend promotion campaign",
+      "Flyers and local promotion",
+    ],
+    minAmount: 120,
+    maxAmount: 550,
+    monthly: false,
   },
   {
     category: "Supplies",
-    description: "Cleaning products and bags",
-    amount: 220.0,
-    spentAt: new Date("2026-06-02T09:20:00.000Z"),
+    descriptions: [
+      "Cleaning products and bags",
+      "Receipt rolls and labels",
+      "Store consumables restock",
+    ],
+    minAmount: 70,
+    maxAmount: 260,
+    monthly: false,
   },
   {
     category: "Transport",
-    description: "Supplier delivery fees",
-    amount: 310.0,
-    spentAt: new Date("2026-06-04T11:00:00.000Z"),
+    descriptions: [
+      "Supplier delivery fees",
+      "Urgent stock pickup",
+      "Regional delivery charge",
+    ],
+    minAmount: 90,
+    maxAmount: 340,
+    monthly: false,
   },
   {
     category: "Maintenance",
-    description: "Shelf repair and upkeep",
-    amount: 180.0,
-    spentAt: new Date("2026-06-05T14:40:00.000Z"),
+    descriptions: [
+      "Shelf repair and upkeep",
+      "Equipment servicing",
+      "Small store repairs",
+    ],
+    minAmount: 120,
+    maxAmount: 420,
+    monthly: false,
   },
   {
     category: "Internet",
-    description: "Store internet bill",
-    amount: 120.0,
-    spentAt: new Date("2026-06-06T08:45:00.000Z"),
+    descriptions: ["Store internet bill"],
+    minAmount: 90,
+    maxAmount: 140,
+    monthly: true,
   },
   {
     category: "Packaging",
-    description: "Boxes and wrapping",
-    amount: 140.0,
-    spentAt: new Date("2026-06-08T13:10:00.000Z"),
-  },
-  {
-    category: "Marketing",
-    description: "Weekend promotion campaign",
-    amount: 260.0,
-    spentAt: new Date("2026-06-10T15:25:00.000Z"),
-  },
-  {
-    category: "Supplies",
-    description: "Receipt rolls and labels",
-    amount: 95.0,
-    spentAt: new Date("2026-06-12T10:35:00.000Z"),
-  },
-  {
-    category: "Utilities",
-    description: "Extra cooling costs",
-    amount: 180.0,
-    spentAt: new Date("2026-06-14T16:00:00.000Z"),
+    descriptions: [
+      "Boxes and wrapping",
+      "Takeaway packaging",
+      "Label and packaging refill",
+    ],
+    minAmount: 80,
+    maxAmount: 220,
+    monthly: false,
   },
   {
     category: "Cleaning",
-    description: "Deep cleaning service",
-    amount: 210.0,
-    spentAt: new Date("2026-06-15T09:50:00.000Z"),
+    descriptions: [
+      "Deep cleaning service",
+      "Cleaning contractor visit",
+      "Floor and storage cleaning",
+    ],
+    minAmount: 110,
+    maxAmount: 260,
+    monthly: false,
   },
-];
+] as const;
+
+function generateDemoExpenses(): DemoExpenseSeed[] {
+  const rand = createSeededRandom(20260620);
+  const expenses: DemoExpenseSeed[] = [];
+  const startMonth = new Date(Date.UTC(2025, 5, 1));
+  const endMonth = new Date(Date.UTC(2026, 5, 1));
+
+  for (
+    let currentMonth = new Date(startMonth);
+    currentMonth <= endMonth;
+    currentMonth.setUTCMonth(currentMonth.getUTCMonth() + 1)
+  ) {
+    for (const template of demoExpenseTemplates) {
+      if (template.monthly) {
+        const spentAt = new Date(currentMonth);
+        spentAt.setUTCDate(template.category === "Rent" ? 1 : 3);
+        spentAt.setUTCHours(9, randomInt(rand, 0, 59), 0, 0);
+
+        expenses.push({
+          category: template.category,
+          description: pickOne(rand, template.descriptions),
+          amount: roundToTwo(
+            randomInt(rand, template.minAmount, template.maxAmount),
+          ),
+          spentAt,
+        });
+
+        continue;
+      }
+
+      const occurrences = rand() > 0.75 ? 2 : 1;
+
+      for (let index = 0; index < occurrences; index += 1) {
+        const spentAt = new Date(currentMonth);
+        spentAt.setUTCDate(randomInt(rand, 4, 27));
+        spentAt.setUTCHours(
+          randomInt(rand, 8, 17),
+          randomInt(rand, 0, 59),
+          0,
+          0,
+        );
+
+        expenses.push({
+          category: template.category,
+          description: pickOne(rand, template.descriptions),
+          amount: roundToTwo(
+            randomInt(rand, template.minAmount, template.maxAmount),
+          ),
+          spentAt,
+        });
+      }
+    }
+  }
+
+  return expenses.sort((a, b) => a.spentAt.getTime() - b.spentAt.getTime());
+}
+
+export const demoExpenses: DemoExpenseSeed[] = generateDemoExpenses();

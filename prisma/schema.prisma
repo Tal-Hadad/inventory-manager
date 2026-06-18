@@ -192,6 +192,9 @@ model DemoSale {
   unitPrice    Decimal     @db.Decimal(10, 2) @map("unit_price")
   totalAmount  Decimal     @db.Decimal(10, 2) @map("total_amount")
   soldAt       DateTime    @default(now()) @map("sold_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  
 
   product      DemoProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
 
@@ -206,6 +209,8 @@ model DemoPurchase {
   unitCost    Decimal     @db.Decimal(10, 2) @map("unit_cost")
   totalCost   Decimal     @db.Decimal(10, 2) @map("total_cost")
   purchasedAt DateTime    @default(now()) @map("purchased_at")
+   createdAt    DateTime  @default(now()) @map("created_at")
+
 
   product     DemoProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
 
@@ -219,6 +224,8 @@ model DemoExpense {
   description String?
   amount      Decimal   @db.Decimal(10, 2)
   spentAt     DateTime  @default(now()) @map("spent_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
 
   @@map("demo_expenses")
 }

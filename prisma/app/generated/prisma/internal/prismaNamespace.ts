@@ -1559,7 +1559,8 @@ export const DemoSaleScalarFieldEnum = {
   quantity: 'quantity',
   unitPrice: 'unitPrice',
   totalAmount: 'totalAmount',
-  soldAt: 'soldAt'
+  soldAt: 'soldAt',
+  createdAt: 'createdAt'
 } as const
 
 export type DemoSaleScalarFieldEnum = (typeof DemoSaleScalarFieldEnum)[keyof typeof DemoSaleScalarFieldEnum]
@@ -1571,7 +1572,8 @@ export const DemoPurchaseScalarFieldEnum = {
   quantity: 'quantity',
   unitCost: 'unitCost',
   totalCost: 'totalCost',
-  purchasedAt: 'purchasedAt'
+  purchasedAt: 'purchasedAt',
+  createdAt: 'createdAt'
 } as const
 
 export type DemoPurchaseScalarFieldEnum = (typeof DemoPurchaseScalarFieldEnum)[keyof typeof DemoPurchaseScalarFieldEnum]
@@ -1582,7 +1584,8 @@ export const DemoExpenseScalarFieldEnum = {
   category: 'category',
   description: 'description',
   amount: 'amount',
-  spentAt: 'spentAt'
+  spentAt: 'spentAt',
+  createdAt: 'createdAt'
 } as const
 
 export type DemoExpenseScalarFieldEnum = (typeof DemoExpenseScalarFieldEnum)[keyof typeof DemoExpenseScalarFieldEnum]

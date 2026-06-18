@@ -1,38 +1,116 @@
-import type { DashboardOverview } from "./dashboardTypes";
+import type { DashboardOverview, DashboardPeriod } from "./dashboardTypes";
 import { prisma } from "@/lib/prisma";
+import { getPeriodRanges } from "./getPeriodRanges";
+import { buildSalesChart } from "./buildSalesChart";
 
-export async function getDemoDashboardOverview(): Promise<DashboardOverview> {
-  const [salesAgg, purchaseAgg, expenseAgg, groupedExpenses, groupedSales] =
-    await Promise.all([
-      prisma.demoSale.aggregate({
-        _sum: { totalAmount: true, quantity: true },
-        _count: { id: true },
-      }),
-      prisma.demoPurchase.aggregate({
-        _sum: { totalCost: true, quantity: true },
-        _count: { id: true },
-      }),
-      prisma.demoExpense.aggregate({
-        _sum: { amount: true },
-        _count: { id: true },
-      }),
-      prisma.demoExpense.groupBy({
-        by: ["category"],
-        _sum: { amount: true },
-        orderBy: {
-          _sum: { amount: "desc" },
+export async function getDemoDashboardOverview(
+  period: DashboardPeriod = "last30Days",
+): Promise<DashboardOverview> {
+  const { currentStart, currentEnd, previousStart, previousEnd } =
+    getPeriodRanges(period);
+
+  const [
+    salesAgg,
+    purchaseAgg,
+    expenseAgg,
+    groupedExpenses,
+    groupedSales,
+    previousSalesAgg,
+    salesRows,
+  ] = await Promise.all([
+    prisma.demoSale.aggregate({
+      where: {
+        soldAt: {
+          gte: currentStart,
+          lt: currentEnd,
         },
-        take: 5,
-      }),
-      prisma.demoSale.groupBy({
-        by: ["productId"],
-        _sum: { quantity: true, totalAmount: true },
-        orderBy: {
-          _sum: { quantity: "desc" },
+      },
+      _sum: { totalAmount: true, quantity: true },
+      _count: { id: true },
+    }),
+    prisma.demoPurchase.aggregate({
+      where: {
+        purchasedAt: {
+          gte: currentStart,
+          lt: currentEnd,
         },
-        take: 15,
-      }),
-    ]);
+      },
+      _sum: { totalCost: true, quantity: true },
+      _count: { id: true },
+    }),
+    prisma.demoExpense.aggregate({
+      where: {
+        spentAt: {
+          gte: currentStart,
+          lt: currentEnd,
+        },
+      },
+      _sum: { amount: true },
+      _count: { id: true },
+    }),
+    prisma.demoExpense.groupBy({
+      by: ["category"],
+      where: {
+        spentAt: {
+          gte: currentStart,
+          lt: currentEnd,
+        },
+      },
+      _sum: { amount: true },
+      orderBy: {
+        _sum: { amount: "desc" },
+      },
+      take: 5,
+    }),
+    prisma.demoSale.groupBy({
+      by: ["productId"],
+      where: {
+        soldAt: {
+          gte: currentStart,
+          lt: currentEnd,
+        },
+      },
+      _sum: { quantity: true, totalAmount: true },
+      orderBy: {
+        _sum: { quantity: "desc" },
+      },
+      take: 15,
+    }),
+    prisma.demoSale.aggregate({
+      where: {
+        soldAt: {
+          gte: previousStart,
+          lt: previousEnd,
+        },
+      },
+      _sum: { totalAmount: true },
+    }),
+    prisma.demoSale.findMany({
+      where: {
+        soldAt: {
+          gte: currentStart,
+          lt: currentEnd,
+        },
+      },
+      select: {
+        soldAt: true,
+        totalAmount: true,
+      },
+      orderBy: {
+        soldAt: "asc",
+      },
+    }),
+  ]);
+
+  const currentRevenue = Number(salesAgg._sum.totalAmount ?? 0);
+  const previousRevenue = Number(previousSalesAgg._sum.totalAmount ?? 0);
+
+  const changePercentage =
+    previousRevenue === 0
+      ? 0
+      : ((currentRevenue - previousRevenue) / previousRevenue) * 100;
+
+  const salesChart = buildSalesChart(salesRows, period, currentStart);
 
   const productIds = groupedSales.map((item) => item.productId);
 
@@ -45,6 +123,7 @@ export async function getDemoDashboardOverview(): Promise<DashboardOverview> {
 
   return {
     isDemo: true,
+    salesChart,
     popularProducts: groupedSales.map((item) => {
       const product = products.find((p) => p.id === item.productId);
 
@@ -62,6 +141,7 @@ export async function getDemoDashboardOverview(): Promise<DashboardOverview> {
       totalRevenue: Number(salesAgg._sum.totalAmount ?? 0),
       totalSalesCount: salesAgg._count.id,
       totalUnitsSold: Number(salesAgg._sum.quantity ?? 0),
+      changePercentage: Number(changePercentage.toFixed(1)),
     },
     purchaseSummary: {
       totalPurchaseCost: Number(purchaseAgg._sum.totalCost ?? 0),

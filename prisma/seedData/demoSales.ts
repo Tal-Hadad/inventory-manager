@@ -1,3 +1,5 @@
+import { createSeededRandom, randomInt, roundToTwo } from "./seedUtils";
+
 export type DemoSaleSeed = {
   sku: string;
   quantity: number;
@@ -6,222 +8,92 @@ export type DemoSaleSeed = {
   soldAt: Date;
 };
 
-export const demoSales: DemoSaleSeed[] = [
-  {
-    sku: "COFFEE-001",
-    quantity: 10,
-    unitPrice: 42.0,
-    totalAmount: 420.0,
-    soldAt: new Date("2026-06-15T09:10:00.000Z"),
-  },
-  {
-    sku: "COFFEE-001",
-    quantity: 6,
-    unitPrice: 41.0,
-    totalAmount: 246.0,
-    soldAt: new Date("2026-06-13T11:20:00.000Z"),
-  },
-  {
-    sku: "MILK-001",
-    quantity: 25,
-    unitPrice: 8.5,
-    totalAmount: 212.5,
-    soldAt: new Date("2026-06-14T08:45:00.000Z"),
-  },
-  {
-    sku: "SUGAR-001",
-    quantity: 15,
-    unitPrice: 6.0,
-    totalAmount: 90.0,
-    soldAt: new Date("2026-06-12T10:30:00.000Z"),
-  },
-  {
-    sku: "BREAD-001",
-    quantity: 18,
-    unitPrice: 12.0,
-    totalAmount: 216.0,
-    soldAt: new Date("2026-06-15T07:15:00.000Z"),
-  },
-  {
-    sku: "EGGS-001",
-    quantity: 12,
-    unitPrice: 18.0,
-    totalAmount: 216.0,
-    soldAt: new Date("2026-06-14T09:00:00.000Z"),
-  },
-  {
-    sku: "RICE-001",
-    quantity: 20,
-    unitPrice: 9.5,
-    totalAmount: 190.0,
-    soldAt: new Date("2026-06-11T13:40:00.000Z"),
-  },
-  {
-    sku: "PASTA-001",
-    quantity: 16,
-    unitPrice: 7.5,
-    totalAmount: 120.0,
-    soldAt: new Date("2026-06-12T14:10:00.000Z"),
-  },
-  {
-    sku: "OIL-001",
-    quantity: 8,
-    unitPrice: 32.0,
-    totalAmount: 256.0,
-    soldAt: new Date("2026-06-10T16:00:00.000Z"),
-  },
-  {
-    sku: "BUTTER-001",
-    quantity: 10,
-    unitPrice: 14.0,
-    totalAmount: 140.0,
-    soldAt: new Date("2026-06-13T09:35:00.000Z"),
-  },
-  {
-    sku: "CHEESE-001",
-    quantity: 7,
-    unitPrice: 22.0,
-    totalAmount: 154.0,
-    soldAt: new Date("2026-06-15T12:20:00.000Z"),
-  },
-  {
-    sku: "TEA-001",
-    quantity: 14,
-    unitPrice: 16.0,
-    totalAmount: 224.0,
-    soldAt: new Date("2026-06-09T10:25:00.000Z"),
-  },
-  {
-    sku: "JUICE-001",
-    quantity: 11,
-    unitPrice: 11.0,
-    totalAmount: 121.0,
-    soldAt: new Date("2026-06-14T15:05:00.000Z"),
-  },
-  {
-    sku: "CEREAL-001",
-    quantity: 9,
-    unitPrice: 18.0,
-    totalAmount: 162.0,
-    soldAt: new Date("2026-06-11T08:50:00.000Z"),
-  },
-  {
-    sku: "COOKIES-001",
-    quantity: 17,
-    unitPrice: 10.0,
-    totalAmount: 170.0,
-    soldAt: new Date("2026-06-13T17:10:00.000Z"),
-  },
-  {
-    sku: "CHIPS-001",
-    quantity: 22,
-    unitPrice: 9.0,
-    totalAmount: 198.0,
-    soldAt: new Date("2026-06-14T18:25:00.000Z"),
-  },
-  {
-    sku: "DETERGENT-001",
-    quantity: 6,
-    unitPrice: 28.0,
-    totalAmount: 168.0,
-    soldAt: new Date("2026-06-08T11:45:00.000Z"),
-  },
-  {
-    sku: "DISH-001",
-    quantity: 13,
-    unitPrice: 9.5,
-    totalAmount: 123.5,
-    soldAt: new Date("2026-06-12T13:00:00.000Z"),
-  },
-  {
-    sku: "TP-001",
-    quantity: 8,
-    unitPrice: 24.0,
-    totalAmount: 192.0,
-    soldAt: new Date("2026-06-10T09:30:00.000Z"),
-  },
-  {
-    sku: "SOAP-001",
-    quantity: 15,
-    unitPrice: 7.0,
-    totalAmount: 105.0,
-    soldAt: new Date("2026-06-15T16:40:00.000Z"),
-  },
-  {
-    sku: "SHAMPOO-001",
-    quantity: 9,
-    unitPrice: 19.0,
-    totalAmount: 171.0,
-    soldAt: new Date("2026-06-14T12:10:00.000Z"),
-  },
-  {
-    sku: "COFFEE-001",
-    quantity: 5,
-    unitPrice: 40.0,
-    totalAmount: 200.0,
-    soldAt: new Date("2026-06-08T08:20:00.000Z"),
-  },
-  {
-    sku: "MILK-001",
-    quantity: 14,
-    unitPrice: 8.5,
-    totalAmount: 119.0,
-    soldAt: new Date("2026-06-10T07:55:00.000Z"),
-  },
-  {
-    sku: "BREAD-001",
-    quantity: 10,
-    unitPrice: 12.0,
-    totalAmount: 120.0,
-    soldAt: new Date("2026-06-11T06:40:00.000Z"),
-  },
-  {
-    sku: "EGGS-001",
-    quantity: 9,
-    unitPrice: 18.0,
-    totalAmount: 162.0,
-    soldAt: new Date("2026-06-09T10:10:00.000Z"),
-  },
-  {
-    sku: "RICE-001",
-    quantity: 11,
-    unitPrice: 9.5,
-    totalAmount: 104.5,
-    soldAt: new Date("2026-06-07T14:15:00.000Z"),
-  },
-  {
-    sku: "PASTA-001",
-    quantity: 12,
-    unitPrice: 7.5,
-    totalAmount: 90.0,
-    soldAt: new Date("2026-06-06T15:30:00.000Z"),
-  },
-  {
-    sku: "CHEESE-001",
-    quantity: 5,
-    unitPrice: 22.0,
-    totalAmount: 110.0,
-    soldAt: new Date("2026-06-07T11:35:00.000Z"),
-  },
-  {
-    sku: "COOKIES-001",
-    quantity: 12,
-    unitPrice: 10.0,
-    totalAmount: 120.0,
-    soldAt: new Date("2026-06-08T17:50:00.000Z"),
-  },
-  {
-    sku: "CHIPS-001",
-    quantity: 16,
-    unitPrice: 9.0,
-    totalAmount: 144.0,
-    soldAt: new Date("2026-06-06T18:05:00.000Z"),
-  },
-  {
-    sku: "SHAMPOO-001",
-    quantity: 6,
-    unitPrice: 19.0,
-    totalAmount: 114.0,
-    soldAt: new Date("2026-06-09T13:25:00.000Z"),
-  },
-];
+const demoSaleProducts = [
+  { sku: "COFFEE-001", basePrice: 42, minQty: 50, maxQty: 110 },
+  { sku: "MILK-001", basePrice: 8.5, minQty: 90, maxQty: 180 },
+  { sku: "BREAD-001", basePrice: 12, minQty: 60, maxQty: 130 },
+  { sku: "EGGS-001", basePrice: 18, minQty: 45, maxQty: 100 },
+  { sku: "RICE-001", basePrice: 9.5, minQty: 70, maxQty: 140 },
+  { sku: "PASTA-001", basePrice: 7.5, minQty: 70, maxQty: 140 },
+  { sku: "OIL-001", basePrice: 32, minQty: 18, maxQty: 55 },
+  { sku: "BUTTER-001", basePrice: 14, minQty: 40, maxQty: 95 },
+  { sku: "CHEESE-001", basePrice: 22, minQty: 25, maxQty: 70 },
+  { sku: "TEA-001", basePrice: 16, minQty: 35, maxQty: 90 },
+  { sku: "COOKIES-001", basePrice: 10, minQty: 50, maxQty: 140 },
+  { sku: "CHIPS-001", basePrice: 9, minQty: 70, maxQty: 170 },
+  { sku: "JUICE-001", basePrice: 11, minQty: 45, maxQty: 120 },
+  { sku: "CEREAL-001", basePrice: 18, minQty: 25, maxQty: 80 },
+  { sku: "DETERGENT-001", basePrice: 28, minQty: 15, maxQty: 45 },
+  { sku: "DISH-001", basePrice: 9.5, minQty: 40, maxQty: 100 },
+  { sku: "TP-001", basePrice: 24, minQty: 20, maxQty: 75 },
+  { sku: "SOAP-001", basePrice: 7, minQty: 45, maxQty: 120 },
+  { sku: "SHAMPOO-001", basePrice: 19, minQty: 18, maxQty: 65 },
+] as const;
+
+function getSeasonMultiplier(month: number) {
+  const seasonalMap = [
+    0.92, 0.9, 0.95, 1, 1.03, 1.08, 1.12, 1.1, 1.04, 1.01, 1.06, 1.18,
+  ];
+
+  return seasonalMap[month];
+}
+
+function generateDemoSales(): DemoSaleSeed[] {
+  const rand = createSeededRandom(20260618);
+  const sales: DemoSaleSeed[] = [];
+  const startDate = new Date("2025-06-01T00:00:00.000Z");
+  const endDate = new Date("2026-06-18T00:00:00.000Z");
+
+  for (
+    let current = new Date(startDate);
+    current <= endDate;
+    current.setUTCDate(current.getUTCDate() + 1)
+  ) {
+    const dayOfWeek = current.getUTCDay();
+    const isWeekend = dayOfWeek === 5 || dayOfWeek === 6;
+    const baseTransactions = isWeekend ? 5 : 3;
+    const extraTransactions = rand() > 0.7 ? 2 : rand() > 0.4 ? 1 : 0;
+    const transactionCount = baseTransactions + extraTransactions;
+
+    for (let index = 0; index < transactionCount; index += 1) {
+      const product =
+        demoSaleProducts[randomInt(rand, 0, demoSaleProducts.length - 1)];
+
+      const month = current.getUTCMonth();
+      const seasonalMultiplier = getSeasonMultiplier(month);
+      const trendMultiplier =
+        0.88 +
+        ((current.getTime() - startDate.getTime()) /
+          (endDate.getTime() - startDate.getTime())) *
+          0.28;
+      const noiseMultiplier = 0.9 + rand() * 0.25;
+
+      const quantity = Math.max(
+        1,
+        Math.round(
+          randomInt(rand, product.minQty, product.maxQty) *
+            seasonalMultiplier *
+            trendMultiplier *
+            noiseMultiplier,
+        ),
+      );
+
+      const unitPrice = roundToTwo(product.basePrice * (0.97 + rand() * 0.08));
+
+      const soldAt = new Date(current);
+      soldAt.setUTCHours(randomInt(rand, 7, 19), randomInt(rand, 0, 59), 0, 0);
+
+      sales.push({
+        sku: product.sku,
+        quantity,
+        unitPrice,
+        totalAmount: roundToTwo(quantity * unitPrice),
+        soldAt,
+      });
+    }
+  }
+
+  return sales.sort((a, b) => a.soldAt.getTime() - b.soldAt.getTime());
+}
+
+export const demoSales: DemoSaleSeed[] = generateDemoSales();

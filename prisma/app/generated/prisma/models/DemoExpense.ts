@@ -40,6 +40,7 @@ export type DemoExpenseMinAggregateOutputType = {
   description: string | null
   amount: runtime.Decimal | null
   spentAt: Date | null
+  createdAt: Date | null
 }
 
 export type DemoExpenseMaxAggregateOutputType = {
@@ -48,6 +49,7 @@ export type DemoExpenseMaxAggregateOutputType = {
   description: string | null
   amount: runtime.Decimal | null
   spentAt: Date | null
+  createdAt: Date | null
 }
 
 export type DemoExpenseCountAggregateOutputType = {
@@ -56,6 +58,7 @@ export type DemoExpenseCountAggregateOutputType = {
   description: number
   amount: number
   spentAt: number
+  createdAt: number
   _all: number
 }
 
@@ -74,6 +77,7 @@ export type DemoExpenseMinAggregateInputType = {
   description?: true
   amount?: true
   spentAt?: true
+  createdAt?: true
 }
 
 export type DemoExpenseMaxAggregateInputType = {
@@ -82,6 +86,7 @@ export type DemoExpenseMaxAggregateInputType = {
   description?: true
   amount?: true
   spentAt?: true
+  createdAt?: true
 }
 
 export type DemoExpenseCountAggregateInputType = {
@@ -90,6 +95,7 @@ export type DemoExpenseCountAggregateInputType = {
   description?: true
   amount?: true
   spentAt?: true
+  createdAt?: true
   _all?: true
 }
 
@@ -185,6 +191,7 @@ export type DemoExpenseGroupByOutputType = {
   description: string | null
   amount: runtime.Decimal
   spentAt: Date
+  createdAt: Date
   _count: DemoExpenseCountAggregateOutputType | null
   _avg: DemoExpenseAvgAggregateOutputType | null
   _sum: DemoExpenseSumAggregateOutputType | null
@@ -216,6 +223,7 @@ export type DemoExpenseWhereInput = {
   description?: Prisma.StringNullableFilter<"DemoExpense"> | string | null
   amount?: Prisma.DecimalFilter<"DemoExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   spentAt?: Prisma.DateTimeFilter<"DemoExpense"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"DemoExpense"> | Date | string
 }
 
 export type DemoExpenseOrderByWithRelationInput = {
@@ -224,6 +232,7 @@ export type DemoExpenseOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   amount?: Prisma.SortOrder
   spentAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type DemoExpenseWhereUniqueInput = Prisma.AtLeast<{
@@ -235,6 +244,7 @@ export type DemoExpenseWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"DemoExpense"> | string | null
   amount?: Prisma.DecimalFilter<"DemoExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   spentAt?: Prisma.DateTimeFilter<"DemoExpense"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"DemoExpense"> | Date | string
 }, "id">
 
 export type DemoExpenseOrderByWithAggregationInput = {
@@ -243,6 +253,7 @@ export type DemoExpenseOrderByWithAggregationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   amount?: Prisma.SortOrder
   spentAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   _count?: Prisma.DemoExpenseCountOrderByAggregateInput
   _avg?: Prisma.DemoExpenseAvgOrderByAggregateInput
   _max?: Prisma.DemoExpenseMaxOrderByAggregateInput
@@ -259,6 +270,7 @@ export type DemoExpenseScalarWhereWithAggregatesInput = {
   description?: Prisma.StringNullableWithAggregatesFilter<"DemoExpense"> | string | null
   amount?: Prisma.DecimalWithAggregatesFilter<"DemoExpense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   spentAt?: Prisma.DateTimeWithAggregatesFilter<"DemoExpense"> | Date | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"DemoExpense"> | Date | string
 }
 
 export type DemoExpenseCreateInput = {
@@ -267,6 +279,7 @@ export type DemoExpenseCreateInput = {
   description?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   spentAt?: Date | string
+  createdAt?: Date | string
 }
 
 export type DemoExpenseUncheckedCreateInput = {
@@ -275,6 +288,7 @@ export type DemoExpenseUncheckedCreateInput = {
   description?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   spentAt?: Date | string
+  createdAt?: Date | string
 }
 
 export type DemoExpenseUpdateInput = {
@@ -283,6 +297,7 @@ export type DemoExpenseUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   spentAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DemoExpenseUncheckedUpdateInput = {
@@ -291,6 +306,7 @@ export type DemoExpenseUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   spentAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DemoExpenseCreateManyInput = {
@@ -299,6 +315,7 @@ export type DemoExpenseCreateManyInput = {
   description?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   spentAt?: Date | string
+  createdAt?: Date | string
 }
 
 export type DemoExpenseUpdateManyMutationInput = {
@@ -307,6 +324,7 @@ export type DemoExpenseUpdateManyMutationInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   spentAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DemoExpenseUncheckedUpdateManyInput = {
@@ -315,6 +333,7 @@ export type DemoExpenseUncheckedUpdateManyInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   spentAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DemoExpenseCountOrderByAggregateInput = {
@@ -323,6 +342,7 @@ export type DemoExpenseCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   spentAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type DemoExpenseAvgOrderByAggregateInput = {
@@ -335,6 +355,7 @@ export type DemoExpenseMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   spentAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type DemoExpenseMinOrderByAggregateInput = {
@@ -343,6 +364,7 @@ export type DemoExpenseMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   spentAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type DemoExpenseSumOrderByAggregateInput = {
@@ -357,6 +379,7 @@ export type DemoExpenseSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   description?: boolean
   amount?: boolean
   spentAt?: boolean
+  createdAt?: boolean
 }, ExtArgs["result"]["demoExpense"]>
 
 export type DemoExpenseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -365,6 +388,7 @@ export type DemoExpenseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   description?: boolean
   amount?: boolean
   spentAt?: boolean
+  createdAt?: boolean
 }, ExtArgs["result"]["demoExpense"]>
 
 export type DemoExpenseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -373,6 +397,7 @@ export type DemoExpenseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   description?: boolean
   amount?: boolean
   spentAt?: boolean
+  createdAt?: boolean
 }, ExtArgs["result"]["demoExpense"]>
 
 export type DemoExpenseSelectScalar = {
@@ -381,9 +406,10 @@ export type DemoExpenseSelectScalar = {
   description?: boolean
   amount?: boolean
   spentAt?: boolean
+  createdAt?: boolean
 }
 
-export type DemoExpenseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "category" | "description" | "amount" | "spentAt", ExtArgs["result"]["demoExpense"]>
+export type DemoExpenseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "category" | "description" | "amount" | "spentAt" | "createdAt", ExtArgs["result"]["demoExpense"]>
 
 export type $DemoExpensePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "DemoExpense"
@@ -394,6 +420,7 @@ export type $DemoExpensePayload<ExtArgs extends runtime.Types.Extensions.Interna
     description: string | null
     amount: runtime.Decimal
     spentAt: Date
+    createdAt: Date
   }, ExtArgs["result"]["demoExpense"]>
   composites: {}
 }
@@ -822,6 +849,7 @@ export interface DemoExpenseFieldRefs {
   readonly description: Prisma.FieldRef<"DemoExpense", 'String'>
   readonly amount: Prisma.FieldRef<"DemoExpense", 'Decimal'>
   readonly spentAt: Prisma.FieldRef<"DemoExpense", 'DateTime'>
+  readonly createdAt: Prisma.FieldRef<"DemoExpense", 'DateTime'>
 }
     
 
