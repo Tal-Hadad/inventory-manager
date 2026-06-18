@@ -25,7 +25,7 @@ export default function PurchaseSummaryCard({
 
   return (
     <>
-      <div className="row-span-2 xl:row-span-3 col-span-1 md:col-span-2 rounded-2xl xl:col-span-1 pb-16 shadow-md dark:bg-zinc-900">
+      <div className="row-span-2 xl:row-span-3 col-span-1 md:col-span-2 rounded-2xl xl:col-span-1 pb-16 shadow-md bg-white dark:bg-zinc-900">
         <h3 className="px-7 pt-5 pb-2 text-lg font-semibold">
           Purchase Summary
         </h3>
@@ -55,11 +55,11 @@ export default function PurchaseSummaryCard({
             </div>
           </div>
           {/* chart */}
-          <section className="opacity-60 transition-opacity">
-            <ResponsiveContainer width="100%" height={250}>
+          <section>
+            <ResponsiveContainer width="100%" height={220}>
               <AreaChart
                 data={purchaseChart}
-                margin={{ top: 0, right: 8, left: -50, bottom: 45 }}
+                margin={{ top: 0, right: 8, left: -50, bottom: 55 }}
               >
                 <XAxis dataKey="date" tick={false} axisLine={false} />
                 <YAxis tick={false} axisLine={false} tickLine={false} />
