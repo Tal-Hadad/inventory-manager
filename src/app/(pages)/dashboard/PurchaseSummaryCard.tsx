@@ -19,10 +19,6 @@ export default function PurchaseSummaryCard({
   purchaseSummary,
   purchaseChart,
 }: PurchaseSummaryCardProps) {
-  const isPositive = purchaseSummary.changePercentage >= 0;
-  const totalPurchased = purchaseSummary.totalPurchasedUnits;
-  const lastDataPoint = purchaseChart[purchaseChart.length - 1];
-
   return (
     <>
       <div className="row-span-2 xl:row-span-3 col-span-1 md:col-span-2 rounded-2xl xl:col-span-1 pb-16 shadow-md bg-white dark:bg-zinc-900">
@@ -30,7 +26,6 @@ export default function PurchaseSummaryCard({
           Purchase Summary
         </h3>
         <hr />
-        {/* body header */}
         <div className="mb-4 mt-7 px-7">
           <p className="text-xs text-gray-400">Purchased</p>
           <div className="flex items-center gap-2">
@@ -54,7 +49,6 @@ export default function PurchaseSummaryCard({
               </p>
             </div>
           </div>
-          {/* chart */}
           <section>
             <ResponsiveContainer width="100%" height={220}>
               <AreaChart
