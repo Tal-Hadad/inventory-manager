@@ -112,7 +112,7 @@ export default function SalesSummeryCard({
       <h3 className="px-7 pt-5 pb-2 text-lg font-semibold">Sales Summary</h3>
       <hr />
 
-      <section className="mb-6 flex items-center justify-between px-7">
+      <section className=" flex items-center justify-between px-7 mb-6 mt-4">
         <div className="text-lg font-medium">
           <p className="text-xs text-gray-400">Value</p>
 
@@ -154,7 +154,7 @@ export default function SalesSummeryCard({
       </section>
 
       <section className={isLoading ? "opacity-60 transition-opacity" : ""}>
-        <ResponsiveContainer width="100%" height={450}>
+        <ResponsiveContainer width="100%" height={440}>
           <BarChart
             key={period}
             data={salesChart}

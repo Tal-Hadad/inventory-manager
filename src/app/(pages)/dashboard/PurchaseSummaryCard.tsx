@@ -21,16 +21,16 @@ export default function PurchaseSummaryCard({
 }: PurchaseSummaryCardProps) {
   return (
     <>
-      <div className="row-span-2 xl:row-span-3 col-span-1 md:col-span-2 rounded-2xl xl:col-span-1 pb-16 shadow-md bg-white dark:bg-zinc-900">
+      <div className="row-span-2 xl:row-span-3 col-span-1 md:col-span-2 rounded-2xl xl:col-span-1 pb-16 shadow-md dark:bg-zinc-900">
         <h3 className="px-7 pt-5 pb-2 text-lg font-semibold">
           Purchase Summary
         </h3>
         <hr />
-        <div className="mb-4 mt-7 px-7">
+        <div className="mb-4 mt-4 px-7">
           <p className="text-xs text-gray-400">Purchased</p>
           <div className="flex items-center gap-2">
             <p className="text-xl font-semibold">
-              ${Number(purchaseSummary.totalPurchaseCost)}
+              ${Number(purchaseSummary.totalPurchaseCost).toLocaleString()}
             </p>
             <div>
               <p

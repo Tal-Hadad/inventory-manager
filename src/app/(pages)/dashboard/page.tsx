@@ -4,6 +4,7 @@ import SalesSummeryCard from "@/app/(pages)/dashboard/SalesSummaryCard";
 import { getDemoDashboardOverview } from "@/lib/dashboard/getDemoDashboardOverview";
 import { getUserDashboardOverview } from "@/lib/dashboard/getUserDashboardOverview";
 import PurchaseSummaryCard from "./PurchaseSummaryCard";
+import ExpenseSummaryCard from "./ExpenseSummaryCard";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -20,7 +21,11 @@ export default async function DashboardPage() {
         </div>
       ) : null}
 
-      <section className="custom-grid-rows grid grid-cols-1 gap-10 pb-4 md:grid-cols-2 xl:grid-cols-3 xl:overflow-auto">
+      <section
+        className="  grid
+  md:grid-rows-[repeat(8,20vh)]
+  xl:grid-rows-[repeat(8,7.5vh)] grid-cols-1 gap-10 pb-4 md:grid-cols-2 xl:grid-cols-3 xl:overflow-auto"
+      >
         <PopularProductsCard products={data.popularProducts} />
 
         <SalesSummeryCard
@@ -32,7 +37,8 @@ export default async function DashboardPage() {
           purchaseSummary={data.purchaseSummary}
           purchaseChart={data.purchaseChart}
         />
-        <div className="row-span-2 col-span-1 bg-gray-500 md:col-span-2 xl:row-span-3 xl:col-span-1" />
+        <ExpenseSummaryCard expenseSummary={data.expenseSummary} />
+
         <div className="row-span-3 bg-gray-500" />
         <div className="bg-gray-500 md:row-span-1 xl:row-span-2" />
         <div className="bg-gray-500 md:row-span-1 xl:row-span-2" />
