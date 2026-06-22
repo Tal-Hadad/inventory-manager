@@ -135,22 +135,18 @@ export async function getDemoDashboardOverview(
     }),
   ]);
 
-  const productIds = groupedSales.map((item) => item.productId);
-
-  const products = productIds.length
-    ? await prisma.demoProduct.findMany({
-        where: {
-          id: { in: productIds },
-        },
-        select: {
-          id: true,
-          name: true,
-          sku: true,
-          price: true,
-          rating: true,
-        },
-      })
-    : [];
+  const products = await prisma.demoProduct.findMany({
+    select: {
+      id: true,
+      name: true,
+      sku: true,
+      price: true,
+      costPrice: true,
+      reorderPoint: true,
+      stockQuantity: true,
+      rating: true,
+    },
+  });
 
   return buildDashboardOverview({
     isDemo: true,

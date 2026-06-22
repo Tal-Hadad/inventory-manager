@@ -21,6 +21,9 @@ type ProductLike = {
   name: string;
   sku: string | null;
   price: number | DecimalLike | null;
+  costPrice: number | DecimalLike | null;
+  reorderPoint: number | null;
+  stockQuantity: number;
   rating: number | DecimalLike | null;
 };
 
@@ -152,6 +155,28 @@ export function buildDashboardOverview<
 
   const productMap = new Map(products.map((product) => [product.id, product]));
 
+  const lowStockProducts = products
+    .filter(
+      (product) =>
+        product.reorderPoint != null &&
+        product.stockQuantity <= product.reorderPoint,
+    )
+    .sort((a, b) => a.stockQuantity - b.stockQuantity)
+    .slice(0, 10);
+
+  const totalEstimatedProfit = groupedSales.reduce((sum, item) => {
+    const product = productMap.get(item.productId);
+    const revenue = toNumber(item._sum.totalAmount);
+    const quantitySold = toNumber(item._sum.quantity);
+    const costPrice = toNumber(product?.costPrice ?? null);
+    const estimatedCost = quantitySold * costPrice;
+
+    return sum + (revenue - estimatedCost);
+  }, 0);
+
+  const estimatedProfitMargin =
+    currentRevenue === 0 ? 0 : (totalEstimatedProfit / currentRevenue) * 100;
+
   return {
     isDemo,
     salesChart,
@@ -166,6 +191,7 @@ export function buildDashboardOverview<
         quantitySold: toNumber(item._sum.quantity),
         revenue: toNumber(item._sum.totalAmount),
         price: toNumber(product?.price ?? null),
+        costPrice: toNumber(product?.costPrice ?? null),
         rating: toNumber(product?.rating ?? null),
       };
     }),
@@ -188,6 +214,21 @@ export function buildDashboardOverview<
         category: getExpenseCategoryName(item),
         amount: toNumber(item._sum.amount),
       })),
+    },
+    lowStockSummary: {
+      totalLowStockProducts: lowStockProducts.length,
+      products: lowStockProducts.map((product) => ({
+        productId: product.id,
+        name: product.name,
+        sku: product.sku,
+        costPrice: toNumber(product.costPrice ?? null),
+        stockQuantity: product.stockQuantity,
+        reorderPoint: product.reorderPoint ?? 0,
+      })),
+    },
+    estimatedProfitSummary: {
+      totalEstimatedProfit: Number(totalEstimatedProfit.toFixed(2)),
+      totalEstimatedProfitMargin: Number(estimatedProfitMargin.toFixed(1)),
     },
   };
 }

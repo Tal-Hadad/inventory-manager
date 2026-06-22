@@ -17,7 +17,7 @@ export default function ExpenseSummaryCard({
     fill: colors[index % colors.length],
   }));
   return (
-    <div className="row-span-3 flex flex-col rounded-2xl bg-white shadow-md dark:bg-zinc-900">
+    <div className="xl:row-span-3 row-span-2 flex flex-col rounded-2xl bg-white shadow-md dark:bg-zinc-900">
       <div>
         <h3 className="px-7 pt-5 pb-2 text-lg font-semibold">
           Expense Summary

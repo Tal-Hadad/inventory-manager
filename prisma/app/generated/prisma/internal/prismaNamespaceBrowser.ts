@@ -145,6 +145,8 @@ export const ProductScalarFieldEnum = {
   sku: 'sku',
   unit: 'unit',
   price: 'price',
+  costPrice: 'costPrice',
+  reorderPoint: 'reorderPoint',
   rating: 'rating',
   stockQuantity: 'stockQuantity',
   createdAt: 'createdAt',
@@ -211,6 +213,8 @@ export const DemoProductScalarFieldEnum = {
   sku: 'sku',
   unit: 'unit',
   price: 'price',
+  costPrice: 'costPrice',
+  reorderPoint: 'reorderPoint',
   rating: 'rating',
   stockQuantity: 'stockQuantity'
 } as const

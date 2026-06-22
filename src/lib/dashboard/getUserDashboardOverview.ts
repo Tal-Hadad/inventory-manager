@@ -145,27 +145,27 @@ export async function getUserDashboardOverview(
     }),
   ]);
 
-  const productIds = groupedSales.map((item) => item.productId);
   const categoryIds = groupedExpenses
     .map((item) => item.categoryId)
     .filter((id): id is string => Boolean(id));
 
   const [products, categories] = await Promise.all([
-    productIds.length
-      ? prisma.product.findMany({
-          where: {
-            userId,
-            id: { in: productIds },
-          },
-          select: {
-            id: true,
-            name: true,
-            sku: true,
-            price: true,
-            rating: true,
-          },
-        })
-      : [],
+    prisma.product.findMany({
+      where: {
+        userId,
+      },
+      select: {
+        id: true,
+        name: true,
+        sku: true,
+        price: true,
+        costPrice: true,
+        reorderPoint: true,
+        stockQuantity: true,
+        rating: true,
+      },
+    }),
+
     categoryIds.length
       ? prisma.expenseCategory.findMany({
           where: {

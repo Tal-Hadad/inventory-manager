@@ -13,6 +13,7 @@ export type DashboardOverview = {
     quantitySold: number;
     revenue: number;
     price: number;
+    costPrice: number;
     rating: number;
   }>;
   salesSummary: {
@@ -42,5 +43,20 @@ export type DashboardOverview = {
       category: string;
       amount: number;
     }>;
+  };
+  lowStockSummary: {
+    totalLowStockProducts: number;
+    products: Array<{
+      productId: string;
+      name: string;
+      sku: string | null;
+      stockQuantity: number;
+      reorderPoint: number;
+      costPrice: number;
+    }>;
+  };
+  estimatedProfitSummary: {
+    totalEstimatedProfit: number;
+    totalEstimatedProfitMargin: number;
   };
 };

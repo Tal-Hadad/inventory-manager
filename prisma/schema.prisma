@@ -79,20 +79,22 @@ model VerificationToken {
 // user owned tables
 
 model Product {
-  id             String    @id @default(cuid())
-  userId         String    @map("user_id")
-  name           String
-  sku            String?
-  unit           String?
-  price          Decimal   @db.Decimal(10, 2)
-  rating         Decimal?  @db.Decimal(2, 1)
-  stockQuantity  Int       @default(0) @map("stock_quantity")
-  createdAt      DateTime  @default(now()) @map("created_at")
-  updatedAt      DateTime  @updatedAt @map("updated_at")
+  id            String    @id @default(cuid())
+  userId        String    @map("user_id")
+  name          String
+  sku           String?
+  unit          String?
+  price         Decimal   @db.Decimal(10, 2)
+  costPrice     Decimal?  @db.Decimal(10, 2) @map("cost_price")
+  reorderPoint  Int?       @default(5) @map("reorder_point")
+  rating        Decimal?  @db.Decimal(2, 1)
+  stockQuantity Int       @default(0) @map("stock_quantity")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
 
-  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  sales          Sale[]
-  purchases      Purchase[]
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sales         Sale[]
+  purchases     Purchase[]
 
   @@map("products")
   @@index([userId])
@@ -175,6 +177,8 @@ model DemoProduct {
   sku           String?
   unit          String?
   price         Decimal   @db.Decimal(10, 2)
+  costPrice     Decimal?  @db.Decimal(10, 2) @map("cost_price")
+  reorderPoint  Int?       @default(5) @map("reorder_point")
   rating        Decimal?  @db.Decimal(2, 1)
   stockQuantity Int       @default(0) @map("stock_quantity")
 

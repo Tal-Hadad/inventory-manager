@@ -5,6 +5,7 @@ import { getDemoDashboardOverview } from "@/lib/dashboard/getDemoDashboardOvervi
 import { getUserDashboardOverview } from "@/lib/dashboard/getUserDashboardOverview";
 import PurchaseSummaryCard from "./PurchaseSummaryCard";
 import ExpenseSummaryCard from "./ExpenseSummaryCard";
+import LowStockProductsCard from "./LowStockProductsCard";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -22,27 +23,22 @@ export default async function DashboardPage() {
       ) : null}
 
       <section
-        className="  grid
-  md:grid-rows-[repeat(8,20vh)]
-  xl:grid-rows-[repeat(8,7.5vh)] grid-cols-1 gap-10 pb-4 md:grid-cols-2 xl:grid-cols-3 xl:overflow-auto"
+        className="grid md:grid-rows-[repeat(8,20vh)] 
+      xl:grid-rows-[repeat(8,7.5vh)] grid-cols-1 gap-10 pb-4 md:grid-cols-2 xl:grid-cols-3 xl:overflow-auto scrollbar-thumb-accent"
       >
         <PopularProductsCard products={data.popularProducts} />
+        <LowStockProductsCard lowStockSummary={data.lowStockSummary} />
 
         <SalesSummeryCard
           initialSalesSummary={data.salesSummary}
           initialSalesChart={data.salesChart}
         />
+        <ExpenseSummaryCard expenseSummary={data.expenseSummary} />
 
         <PurchaseSummaryCard
           purchaseSummary={data.purchaseSummary}
           purchaseChart={data.purchaseChart}
         />
-        <ExpenseSummaryCard expenseSummary={data.expenseSummary} />
-
-        <div className="row-span-3 bg-gray-500" />
-        <div className="bg-gray-500 md:row-span-1 xl:row-span-2" />
-        <div className="bg-gray-500 md:row-span-1 xl:row-span-2" />
-        <div className="bg-gray-500 md:row-span-1 xl:row-span-2" />
       </section>
     </div>
   );
