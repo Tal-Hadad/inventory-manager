@@ -6,6 +6,7 @@ import { getUserDashboardOverview } from "@/lib/dashboard/getUserDashboardOvervi
 import PurchaseSummaryCard from "./PurchaseSummaryCard";
 import ExpenseSummaryCard from "./ExpenseSummaryCard";
 import LowStockProductsCard from "./LowStockProductsCard";
+import EstimatedProfitCard from "./EstimatedProfitCard";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -33,8 +34,10 @@ export default async function DashboardPage() {
           initialSalesSummary={data.salesSummary}
           initialSalesChart={data.salesChart}
         />
+        <EstimatedProfitCard
+          estimatedProfitSummary={data.estimatedProfitSummary}
+        />
         <ExpenseSummaryCard expenseSummary={data.expenseSummary} />
-
         <PurchaseSummaryCard
           purchaseSummary={data.purchaseSummary}
           purchaseChart={data.purchaseChart}

@@ -27,7 +27,7 @@ export default function ExpenseSummaryCard({
 
       <div className="flex flex-1 items-center justify-center gap-6 px-7 pb-6 pt-4">
         <div className="relative h-40 w-40 shrink-0">
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height={155}>
             <PieChart>
               <Pie
                 data={chartData}

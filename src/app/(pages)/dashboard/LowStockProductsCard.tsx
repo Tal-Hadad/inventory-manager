@@ -52,7 +52,7 @@ export default function LowStockProductsCard({
 
       {!hasProducts ? (
         <div className="flex flex-col items-center justify-center text-center">
-          <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/10 text-2xl">
+          <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/10 text-2xl mt-5">
             ✅
           </div>
           <h4 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
