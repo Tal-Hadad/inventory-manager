@@ -20,7 +20,7 @@ export default function Providers({ children, ...themeProps }: ProvidersProps) {
         <div className="flex h-screen w-full overflow-hidden py-7">
           <Sidebar isExpanded={isExpanded} />
 
-          <main className="flex min-h-0 flex-1 flex-col px-9 md:pl-12">
+          <main className="flex min-h-0 flex-1 flex-col px-9 md:pl-10">
             <Navbar
               isExpanded={isExpanded}
               onToggleSidebar={() => setIsExpanded((prev) => !prev)}

@@ -1,4 +1,5 @@
 import type { DashboardOverview } from "@/lib/dashboard/dashboardTypes";
+import { PackageX } from "lucide-react";
 
 interface LowStockProductsCardProps {
   lowStockSummary: DashboardOverview["lowStockSummary"];
@@ -75,6 +76,17 @@ export default function LowStockProductsCard({
                 key={product.productId}
                 className="flex items-start justify-between gap-4 px-7 py-4"
               >
+                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-md bg-zinc-100 dark:bg-zinc-800">
+                  {product.imageKey ? (
+                    <img
+                      src={product.imageKey}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <PackageX className="h-5 w-5 text-zinc-500" />
+                  )}
+                </div>
+
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
                     <h4 className="truncate text-sm font-semibold text-zinc-900 dark:text-zinc-100">

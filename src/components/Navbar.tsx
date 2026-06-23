@@ -11,7 +11,7 @@ type NavbarProps = {
 
 export default function Navbar({ isExpanded, onToggleSidebar }: NavbarProps) {
   return (
-    <header className="mb-7 flex w-full items-center justify-between">
+    <header className="mb-6 flex w-full items-center justify-between">
       <div className="flex items-center gap-5">
         <button
           type="button"

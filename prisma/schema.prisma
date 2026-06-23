@@ -86,9 +86,11 @@ model Product {
   unit          String?
   price         Decimal   @db.Decimal(10, 2)
   costPrice     Decimal?  @db.Decimal(10, 2) @map("cost_price")
-  reorderPoint  Int?       @default(5) @map("reorder_point")
+  reorderPoint  Int?      @default(5) @map("reorder_point")
   rating        Decimal?  @db.Decimal(2, 1)
   stockQuantity Int       @default(0) @map("stock_quantity")
+  imageKey      String?   @map("image_key")
+
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @updatedAt @map("updated_at")
 
@@ -178,10 +180,10 @@ model DemoProduct {
   unit          String?
   price         Decimal   @db.Decimal(10, 2)
   costPrice     Decimal?  @db.Decimal(10, 2) @map("cost_price")
-  reorderPoint  Int?       @default(5) @map("reorder_point")
+  reorderPoint  Int?      @default(5) @map("reorder_point")
   rating        Decimal?  @db.Decimal(2, 1)
   stockQuantity Int       @default(0) @map("stock_quantity")
-
+  imageKey      String?   @map("image_key")
   sales         DemoSale[]
   purchases     DemoPurchase[]
 

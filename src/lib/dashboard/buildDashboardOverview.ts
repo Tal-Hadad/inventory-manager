@@ -25,6 +25,7 @@ type ProductLike = {
   reorderPoint: number | null;
   stockQuantity: number;
   rating: number | DecimalLike | null;
+  imageKey: string | null;
 };
 
 type GroupedSalesRow = {
@@ -193,6 +194,7 @@ export function buildDashboardOverview<
         price: toNumber(product?.price ?? null),
         costPrice: toNumber(product?.costPrice ?? null),
         rating: toNumber(product?.rating ?? null),
+        imageKey: product?.imageKey ?? null,
       };
     }),
     salesSummary: {
@@ -224,6 +226,7 @@ export function buildDashboardOverview<
         costPrice: toNumber(product.costPrice ?? null),
         stockQuantity: product.stockQuantity,
         reorderPoint: product.reorderPoint ?? 0,
+        imageKey: product?.imageKey ?? null,
       })),
     },
     estimatedProfitSummary: {

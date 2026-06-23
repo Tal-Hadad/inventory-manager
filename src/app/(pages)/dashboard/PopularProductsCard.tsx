@@ -1,6 +1,6 @@
 import Rating from "@/components/ui/Rating";
 import type { DashboardOverview } from "@/lib/dashboard/dashboardTypes";
-import { ShoppingBag } from "lucide-react";
+import { PackageCheck, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 
 interface PopularProductsCardProps {
@@ -21,12 +21,17 @@ export default function PopularProductsCard({
             className="flex items-center justify-between gap-3 px-5 py-7 border-b"
           >
             <div className="flex items-center gap-3">
-              <Image
-                src="https://placehold.net/product.svg"
-                width={50}
-                height={50}
-                alt="Product Image"
-              ></Image>
+              <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-md bg-zinc-100 dark:bg-zinc-800">
+                {product.imageKey ? (
+                  <img
+                    src={product.imageKey}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <PackageCheck className="h-5 w-5 text-zinc-500" />
+                )}
+              </div>
+
               <div className="flex flex-col justify-between gap-1 ">
                 <div>
                   <p className="font-semibold">{product.name}</p>

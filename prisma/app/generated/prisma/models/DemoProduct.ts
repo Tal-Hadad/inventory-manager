@@ -52,6 +52,7 @@ export type DemoProductMinAggregateOutputType = {
   reorderPoint: number | null
   rating: runtime.Decimal | null
   stockQuantity: number | null
+  imageKey: string | null
 }
 
 export type DemoProductMaxAggregateOutputType = {
@@ -64,6 +65,7 @@ export type DemoProductMaxAggregateOutputType = {
   reorderPoint: number | null
   rating: runtime.Decimal | null
   stockQuantity: number | null
+  imageKey: string | null
 }
 
 export type DemoProductCountAggregateOutputType = {
@@ -76,6 +78,7 @@ export type DemoProductCountAggregateOutputType = {
   reorderPoint: number
   rating: number
   stockQuantity: number
+  imageKey: number
   _all: number
 }
 
@@ -106,6 +109,7 @@ export type DemoProductMinAggregateInputType = {
   reorderPoint?: true
   rating?: true
   stockQuantity?: true
+  imageKey?: true
 }
 
 export type DemoProductMaxAggregateInputType = {
@@ -118,6 +122,7 @@ export type DemoProductMaxAggregateInputType = {
   reorderPoint?: true
   rating?: true
   stockQuantity?: true
+  imageKey?: true
 }
 
 export type DemoProductCountAggregateInputType = {
@@ -130,6 +135,7 @@ export type DemoProductCountAggregateInputType = {
   reorderPoint?: true
   rating?: true
   stockQuantity?: true
+  imageKey?: true
   _all?: true
 }
 
@@ -229,6 +235,7 @@ export type DemoProductGroupByOutputType = {
   reorderPoint: number | null
   rating: runtime.Decimal | null
   stockQuantity: number
+  imageKey: string | null
   _count: DemoProductCountAggregateOutputType | null
   _avg: DemoProductAvgAggregateOutputType | null
   _sum: DemoProductSumAggregateOutputType | null
@@ -264,6 +271,7 @@ export type DemoProductWhereInput = {
   reorderPoint?: Prisma.IntNullableFilter<"DemoProduct"> | number | null
   rating?: Prisma.DecimalNullableFilter<"DemoProduct"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: Prisma.IntFilter<"DemoProduct"> | number
+  imageKey?: Prisma.StringNullableFilter<"DemoProduct"> | string | null
   sales?: Prisma.DemoSaleListRelationFilter
   purchases?: Prisma.DemoPurchaseListRelationFilter
 }
@@ -278,6 +286,7 @@ export type DemoProductOrderByWithRelationInput = {
   reorderPoint?: Prisma.SortOrderInput | Prisma.SortOrder
   rating?: Prisma.SortOrderInput | Prisma.SortOrder
   stockQuantity?: Prisma.SortOrder
+  imageKey?: Prisma.SortOrderInput | Prisma.SortOrder
   sales?: Prisma.DemoSaleOrderByRelationAggregateInput
   purchases?: Prisma.DemoPurchaseOrderByRelationAggregateInput
 }
@@ -295,6 +304,7 @@ export type DemoProductWhereUniqueInput = Prisma.AtLeast<{
   reorderPoint?: Prisma.IntNullableFilter<"DemoProduct"> | number | null
   rating?: Prisma.DecimalNullableFilter<"DemoProduct"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: Prisma.IntFilter<"DemoProduct"> | number
+  imageKey?: Prisma.StringNullableFilter<"DemoProduct"> | string | null
   sales?: Prisma.DemoSaleListRelationFilter
   purchases?: Prisma.DemoPurchaseListRelationFilter
 }, "id">
@@ -309,6 +319,7 @@ export type DemoProductOrderByWithAggregationInput = {
   reorderPoint?: Prisma.SortOrderInput | Prisma.SortOrder
   rating?: Prisma.SortOrderInput | Prisma.SortOrder
   stockQuantity?: Prisma.SortOrder
+  imageKey?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.DemoProductCountOrderByAggregateInput
   _avg?: Prisma.DemoProductAvgOrderByAggregateInput
   _max?: Prisma.DemoProductMaxOrderByAggregateInput
@@ -329,6 +340,7 @@ export type DemoProductScalarWhereWithAggregatesInput = {
   reorderPoint?: Prisma.IntNullableWithAggregatesFilter<"DemoProduct"> | number | null
   rating?: Prisma.DecimalNullableWithAggregatesFilter<"DemoProduct"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: Prisma.IntWithAggregatesFilter<"DemoProduct"> | number
+  imageKey?: Prisma.StringNullableWithAggregatesFilter<"DemoProduct"> | string | null
 }
 
 export type DemoProductCreateInput = {
@@ -341,6 +353,7 @@ export type DemoProductCreateInput = {
   reorderPoint?: number | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: number
+  imageKey?: string | null
   sales?: Prisma.DemoSaleCreateNestedManyWithoutProductInput
   purchases?: Prisma.DemoPurchaseCreateNestedManyWithoutProductInput
 }
@@ -355,6 +368,7 @@ export type DemoProductUncheckedCreateInput = {
   reorderPoint?: number | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: number
+  imageKey?: string | null
   sales?: Prisma.DemoSaleUncheckedCreateNestedManyWithoutProductInput
   purchases?: Prisma.DemoPurchaseUncheckedCreateNestedManyWithoutProductInput
 }
@@ -369,6 +383,7 @@ export type DemoProductUpdateInput = {
   reorderPoint?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: Prisma.IntFieldUpdateOperationsInput | number
+  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sales?: Prisma.DemoSaleUpdateManyWithoutProductNestedInput
   purchases?: Prisma.DemoPurchaseUpdateManyWithoutProductNestedInput
 }
@@ -383,6 +398,7 @@ export type DemoProductUncheckedUpdateInput = {
   reorderPoint?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: Prisma.IntFieldUpdateOperationsInput | number
+  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sales?: Prisma.DemoSaleUncheckedUpdateManyWithoutProductNestedInput
   purchases?: Prisma.DemoPurchaseUncheckedUpdateManyWithoutProductNestedInput
 }
@@ -397,6 +413,7 @@ export type DemoProductCreateManyInput = {
   reorderPoint?: number | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: number
+  imageKey?: string | null
 }
 
 export type DemoProductUpdateManyMutationInput = {
@@ -409,6 +426,7 @@ export type DemoProductUpdateManyMutationInput = {
   reorderPoint?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: Prisma.IntFieldUpdateOperationsInput | number
+  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type DemoProductUncheckedUpdateManyInput = {
@@ -421,6 +439,7 @@ export type DemoProductUncheckedUpdateManyInput = {
   reorderPoint?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: Prisma.IntFieldUpdateOperationsInput | number
+  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type DemoProductCountOrderByAggregateInput = {
@@ -433,6 +452,7 @@ export type DemoProductCountOrderByAggregateInput = {
   reorderPoint?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   stockQuantity?: Prisma.SortOrder
+  imageKey?: Prisma.SortOrder
 }
 
 export type DemoProductAvgOrderByAggregateInput = {
@@ -453,6 +473,7 @@ export type DemoProductMaxOrderByAggregateInput = {
   reorderPoint?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   stockQuantity?: Prisma.SortOrder
+  imageKey?: Prisma.SortOrder
 }
 
 export type DemoProductMinOrderByAggregateInput = {
@@ -465,6 +486,7 @@ export type DemoProductMinOrderByAggregateInput = {
   reorderPoint?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   stockQuantity?: Prisma.SortOrder
+  imageKey?: Prisma.SortOrder
 }
 
 export type DemoProductSumOrderByAggregateInput = {
@@ -518,6 +540,7 @@ export type DemoProductCreateWithoutSalesInput = {
   reorderPoint?: number | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: number
+  imageKey?: string | null
   purchases?: Prisma.DemoPurchaseCreateNestedManyWithoutProductInput
 }
 
@@ -531,6 +554,7 @@ export type DemoProductUncheckedCreateWithoutSalesInput = {
   reorderPoint?: number | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: number
+  imageKey?: string | null
   purchases?: Prisma.DemoPurchaseUncheckedCreateNestedManyWithoutProductInput
 }
 
@@ -560,6 +584,7 @@ export type DemoProductUpdateWithoutSalesInput = {
   reorderPoint?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: Prisma.IntFieldUpdateOperationsInput | number
+  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchases?: Prisma.DemoPurchaseUpdateManyWithoutProductNestedInput
 }
 
@@ -573,6 +598,7 @@ export type DemoProductUncheckedUpdateWithoutSalesInput = {
   reorderPoint?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: Prisma.IntFieldUpdateOperationsInput | number
+  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchases?: Prisma.DemoPurchaseUncheckedUpdateManyWithoutProductNestedInput
 }
 
@@ -586,6 +612,7 @@ export type DemoProductCreateWithoutPurchasesInput = {
   reorderPoint?: number | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: number
+  imageKey?: string | null
   sales?: Prisma.DemoSaleCreateNestedManyWithoutProductInput
 }
 
@@ -599,6 +626,7 @@ export type DemoProductUncheckedCreateWithoutPurchasesInput = {
   reorderPoint?: number | null
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: number
+  imageKey?: string | null
   sales?: Prisma.DemoSaleUncheckedCreateNestedManyWithoutProductInput
 }
 
@@ -628,6 +656,7 @@ export type DemoProductUpdateWithoutPurchasesInput = {
   reorderPoint?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: Prisma.IntFieldUpdateOperationsInput | number
+  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sales?: Prisma.DemoSaleUpdateManyWithoutProductNestedInput
 }
 
@@ -641,6 +670,7 @@ export type DemoProductUncheckedUpdateWithoutPurchasesInput = {
   reorderPoint?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   stockQuantity?: Prisma.IntFieldUpdateOperationsInput | number
+  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sales?: Prisma.DemoSaleUncheckedUpdateManyWithoutProductNestedInput
 }
 
@@ -694,6 +724,7 @@ export type DemoProductSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   reorderPoint?: boolean
   rating?: boolean
   stockQuantity?: boolean
+  imageKey?: boolean
   sales?: boolean | Prisma.DemoProduct$salesArgs<ExtArgs>
   purchases?: boolean | Prisma.DemoProduct$purchasesArgs<ExtArgs>
   _count?: boolean | Prisma.DemoProductCountOutputTypeDefaultArgs<ExtArgs>
@@ -709,6 +740,7 @@ export type DemoProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   reorderPoint?: boolean
   rating?: boolean
   stockQuantity?: boolean
+  imageKey?: boolean
 }, ExtArgs["result"]["demoProduct"]>
 
 export type DemoProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -721,6 +753,7 @@ export type DemoProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   reorderPoint?: boolean
   rating?: boolean
   stockQuantity?: boolean
+  imageKey?: boolean
 }, ExtArgs["result"]["demoProduct"]>
 
 export type DemoProductSelectScalar = {
@@ -733,9 +766,10 @@ export type DemoProductSelectScalar = {
   reorderPoint?: boolean
   rating?: boolean
   stockQuantity?: boolean
+  imageKey?: boolean
 }
 
-export type DemoProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "sku" | "unit" | "price" | "costPrice" | "reorderPoint" | "rating" | "stockQuantity", ExtArgs["result"]["demoProduct"]>
+export type DemoProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "sku" | "unit" | "price" | "costPrice" | "reorderPoint" | "rating" | "stockQuantity" | "imageKey", ExtArgs["result"]["demoProduct"]>
 export type DemoProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sales?: boolean | Prisma.DemoProduct$salesArgs<ExtArgs>
   purchases?: boolean | Prisma.DemoProduct$purchasesArgs<ExtArgs>
@@ -760,6 +794,7 @@ export type $DemoProductPayload<ExtArgs extends runtime.Types.Extensions.Interna
     reorderPoint: number | null
     rating: runtime.Decimal | null
     stockQuantity: number
+    imageKey: string | null
   }, ExtArgs["result"]["demoProduct"]>
   composites: {}
 }
@@ -1194,6 +1229,7 @@ export interface DemoProductFieldRefs {
   readonly reorderPoint: Prisma.FieldRef<"DemoProduct", 'Int'>
   readonly rating: Prisma.FieldRef<"DemoProduct", 'Decimal'>
   readonly stockQuantity: Prisma.FieldRef<"DemoProduct", 'Int'>
+  readonly imageKey: Prisma.FieldRef<"DemoProduct", 'String'>
 }
     
 

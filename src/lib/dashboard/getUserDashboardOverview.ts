@@ -163,6 +163,7 @@ export async function getUserDashboardOverview(
         reorderPoint: true,
         stockQuantity: true,
         rating: true,
+        imageKey: true,
       },
     }),
 

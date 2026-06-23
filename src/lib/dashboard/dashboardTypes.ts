@@ -15,6 +15,7 @@ export type DashboardOverview = {
     price: number;
     costPrice: number;
     rating: number;
+    imageKey: string | null;
   }>;
   salesSummary: {
     totalRevenue: number;
@@ -53,6 +54,7 @@ export type DashboardOverview = {
       stockQuantity: number;
       reorderPoint: number;
       costPrice: number;
+      imageKey: string | null;
     }>;
   };
   estimatedProfitSummary: {

@@ -145,6 +145,7 @@ export async function getDemoDashboardOverview(
       reorderPoint: true,
       stockQuantity: true,
       rating: true,
+      imageKey: true,
     },
   });
 

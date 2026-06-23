@@ -149,6 +149,7 @@ export const ProductScalarFieldEnum = {
   reorderPoint: 'reorderPoint',
   rating: 'rating',
   stockQuantity: 'stockQuantity',
+  imageKey: 'imageKey',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -216,7 +217,8 @@ export const DemoProductScalarFieldEnum = {
   costPrice: 'costPrice',
   reorderPoint: 'reorderPoint',
   rating: 'rating',
-  stockQuantity: 'stockQuantity'
+  stockQuantity: 'stockQuantity',
+  imageKey: 'imageKey'
 } as const
 
 export type DemoProductScalarFieldEnum = (typeof DemoProductScalarFieldEnum)[keyof typeof DemoProductScalarFieldEnum]
