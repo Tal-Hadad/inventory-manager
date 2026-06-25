@@ -220,7 +220,7 @@ export default function SalesSummeryCard({
 
             <Bar
               dataKey="totalValue"
-              fill="#3b82f6"
+              fill="#2B7FFF"
               barSize={18}
               radius={[10, 10, 0, 0]}
             />

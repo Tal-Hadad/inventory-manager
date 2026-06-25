@@ -1,7 +1,6 @@
-import Rating from "@/components/ui/Rating";
 import type { DashboardOverview } from "@/lib/dashboard/dashboardTypes";
+import Rating from "@/components/ui/Rating";
 import { PackageCheck, ShoppingBag } from "lucide-react";
-import Image from "next/image";
 
 interface PopularProductsCardProps {
   products: DashboardOverview["popularProducts"];

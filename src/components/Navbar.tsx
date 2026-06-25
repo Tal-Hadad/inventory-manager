@@ -17,7 +17,7 @@ export default function Navbar({ isExpanded, onToggleSidebar }: NavbarProps) {
           type="button"
           onClick={onToggleSidebar}
           aria-label={isExpanded ? "Collapse sidebar" : "Expand sidebar"}
-          className="rounded-full bg-gray-100 px-3 py-3 hover:bg-blue-100 dark:bg-gray-900 dark:hover:bg-gray-700 "
+          className="rounded-full bg-gray-100 px-3 py-3 hover:bg-blue-100 dark:bg-zinc-900 dark:hover:bg-zinc-800 "
         >
           <Menu className="h-5 w-5" />
         </button>
@@ -26,7 +26,7 @@ export default function Navbar({ isExpanded, onToggleSidebar }: NavbarProps) {
           <input
             type="search"
             placeholder="Search"
-            className="w-50 rounded-lg border-2 border-gray-300 bg-gray-100 py-2 pl-10 pr-4 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-400 dark:border-gray-700 dark:bg-gray-900 md:w-70"
+            className="w-50 rounded-lg border-2 border-gray-300 bg-gray-100 py-2 pl-10 pr-4 focus:border-transparent focus:outline-none focus:ring-1 focus:ring-blue-400 dark:border-zinc-700 dark:bg-zinc-900 md:w-70"
           />
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             <Search className="text-gray-500" size={20} />

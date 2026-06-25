@@ -15,10 +15,9 @@ type SidebarProps = {
 
 export default function Sidebar({ isExpanded }: SidebarProps) {
   const pathname = usePathname();
-
   return (
     <aside
-      className={`flex min-h-screen flex-col overflow-visible border-r border-gray-300 bg-white transition-[width] duration-300 ease-in-out dark:border-gray-700 dark:bg-gray-950 ${
+      className={`flex min-h-screen flex-col overflow-visible border-r border-gray-300  transition-[width] duration-300 ease-in-out dark:border-zinc-700  ${
         isExpanded ? `w-15 md:w-55` : "w-0 md:w-16 z-10"
       }`}
     >
@@ -56,7 +55,7 @@ export default function Sidebar({ isExpanded }: SidebarProps) {
                     : " hidden md:block justify-start"
                 } ${
                   isActive
-                    ? "bg-blue-100 text-blue-700 dark:bg-gray-800 dark:text-white"
+                    ? "bg-blue-100 text-blue-700 dark:bg-blue-500 dark:text-white"
                     : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
                 }`}
               >
