@@ -10,7 +10,9 @@ type InventoryPageProps = {
   }>;
 };
 
-export default async function InventoryPage(searchParams: InventoryPageProps) {
+export default async function InventoryPage({
+  searchParams,
+}: InventoryPageProps) {
   const session = await auth();
   const params = await searchParams;
   const search = params?.search;
