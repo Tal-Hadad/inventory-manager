@@ -1,6 +1,11 @@
 "use client";
 
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import {
+  DataGrid,
+  GridColDef,
+  GridColumnVisibilityModel,
+} from "@mui/x-data-grid";
 
 type InventoryRow = {
   id: string;
@@ -18,12 +23,22 @@ type InventoryTableProps = {
 };
 
 export default function InventoryTable({ rows }: InventoryTableProps) {
+  const smallScreen = useMediaQuery("(max-width:1500px)");
+  const columnVisibilityModel: GridColumnVisibilityModel = smallScreen
+    ? {
+        sku: false,
+        costPrice: false,
+        reorderPoint: false,
+        stockStatus: false,
+      }
+    : {};
+
   const columns: GridColDef<InventoryRow>[] = [
     {
       field: "id",
       headerName: "ID",
-      minWidth: 120,
-      flex: 0.7,
+      width: smallScreen ? 80 : undefined,
+      flex: smallScreen ? undefined : 0.7,
       headerAlign: "center",
       align: "center",
       headerClassName: "inventory-header",
@@ -31,8 +46,8 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
     {
       field: "sku",
       headerName: "SKU",
-      minWidth: 120,
-      flex: 0.7,
+      width: smallScreen ? 90 : undefined,
+      flex: smallScreen ? undefined : 0.7,
       headerAlign: "center",
       align: "center",
       headerClassName: "inventory-header",
@@ -41,8 +56,8 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
     {
       field: "name",
       headerName: "Product Name",
-      minWidth: 220,
-      flex: 1,
+      width: smallScreen ? 180 : undefined,
+      flex: smallScreen ? undefined : 1,
       headerAlign: "center",
       align: "left",
       headerClassName: "inventory-header",
@@ -50,8 +65,8 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
     {
       field: "price",
       headerName: "Price",
-      minWidth: 120,
-      flex: 0.8,
+      width: smallScreen ? 90 : undefined,
+      flex: smallScreen ? undefined : 0.8,
       type: "number",
       headerAlign: "center",
       align: "center",
@@ -61,8 +76,8 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
     {
       field: "costPrice",
       headerName: "Cost Price",
-      minWidth: 130,
-      flex: 0.8,
+      width: smallScreen ? 100 : undefined,
+      flex: smallScreen ? undefined : 0.8,
       type: "number",
       headerAlign: "center",
       align: "center",
@@ -72,8 +87,8 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
     {
       field: "rating",
       headerName: "Rating",
-      minWidth: 110,
-      flex: 0.7,
+      width: smallScreen ? 80 : undefined,
+      flex: smallScreen ? undefined : 0.7,
       headerAlign: "center",
       align: "center",
       headerClassName: "inventory-header",
@@ -82,9 +97,9 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
     },
     {
       field: "stockQuantity",
-      headerName: "Stock Quantity",
-      minWidth: 150,
-      flex: 0.8,
+      headerName: smallScreen ? "StockQTY" : "Stock Quantity",
+      width: smallScreen ? 110 : undefined,
+      flex: smallScreen ? undefined : 0.8,
       type: "number",
       headerAlign: "center",
       align: "center",
@@ -93,8 +108,8 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
     {
       field: "reorderPoint",
       headerName: "Reorder Point",
-      minWidth: 150,
-      flex: 0.8,
+      width: smallScreen ? 110 : undefined,
+      flex: smallScreen ? undefined : 0.8,
       type: "number",
       headerAlign: "center",
       align: "center",
@@ -103,8 +118,8 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
     {
       field: "stockStatus",
       headerName: "Stock Status",
-      minWidth: 120,
-      flex: 0.8,
+      width: smallScreen ? 100 : undefined,
+      flex: smallScreen ? undefined : 0.8,
       sortable: false,
       filterable: false,
       headerAlign: "center",
@@ -128,6 +143,7 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
       getRowId={(row) => row.id}
       disableRowSelectionOnClick
       pageSizeOptions={[10, 25, 50, 100]}
+      columnVisibilityModel={columnVisibilityModel}
       initialState={{
         pagination: {
           paginationModel: {
