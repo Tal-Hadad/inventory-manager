@@ -24,7 +24,7 @@ export function SignupForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
     setLoading(true);

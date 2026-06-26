@@ -26,7 +26,7 @@ export function LoginForm() {
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
     setLoading(true);

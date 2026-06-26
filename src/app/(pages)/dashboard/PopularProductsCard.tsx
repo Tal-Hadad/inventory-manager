@@ -1,5 +1,5 @@
 import type { DashboardOverview } from "@/lib/dashboard/dashboardTypes";
-import Rating from "@/components/ui/Rating";
+import Rating from "@/components/Rating";
 import { PackageCheck, ShoppingBag } from "lucide-react";
 
 interface PopularProductsCardProps {

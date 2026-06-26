@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { revalidatePath } from "next/cache";
 
-type CreateProductInput = {
+export type CreateProductInput = {
   name: string;
   sku?: string;
   price: number;
@@ -19,7 +19,7 @@ export async function createProduct(input: CreateProductInput) {
   const session = await auth();
 
   if (!session?.user?.id) {
-    throw new Error("Unauthorized");
+    throw new Error("Unauthorized - User not logged in.");
   }
 
   const product = await prisma.product.create({

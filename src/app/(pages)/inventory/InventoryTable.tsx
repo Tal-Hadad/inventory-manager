@@ -23,7 +23,7 @@ type InventoryTableProps = {
 };
 
 export default function InventoryTable({ rows }: InventoryTableProps) {
-  const smallScreen = useMediaQuery("(max-width:1500px)");
+  const smallScreen = useMediaQuery("(max-width:1200px)");
   const columnVisibilityModel: GridColumnVisibilityModel = smallScreen
     ? {
         sku: false,
@@ -137,143 +137,83 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
   ];
 
   return (
-    <DataGrid
-      rows={rows}
-      columns={columns}
-      getRowId={(row) => row.id}
-      disableRowSelectionOnClick
-      pageSizeOptions={[10, 25, 50, 100]}
-      columnVisibilityModel={columnVisibilityModel}
-      initialState={{
-        pagination: {
-          paginationModel: {
-            pageSize: 25,
-            page: 0,
-          },
-        },
-      }}
-      sx={{
-        m: 3,
-        pr: 1,
-        border: "1px solid #e4e4e7",
-        backgroundColor: "#ffffff",
-        color: "#18181b",
+    <div className="mr-3 p-1">
+      <div style={{ width: smallScreen ? 542 : "100%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          getRowId={(row) => row.id}
+          disableRowSelectionOnClick
+          pageSizeOptions={[10, 25, 50, 100]}
+          columnVisibilityModel={columnVisibilityModel}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 25,
+                page: 0,
+              },
+            },
+          }}
+          sx={{
+            "--grid-bg": "#ffffff",
+            "--grid-text": "#18181b",
+            "--grid-border": "#e4e4e7",
+            "--grid-hover": "#f4f4f5",
+            "--grid-icon": "#52525b",
+            border: "1px solid var(--grid-border)",
+            backgroundColor: "var(--grid-bg)",
+            color: "var(--grid-text)",
 
-        "& .MuiDataGrid-main": {
-          backgroundColor: "#ffffff",
-        },
+            "& .MuiDataGrid-main": {
+              backgroundColor: "var(--grid-bg)",
+            },
 
-        "& .MuiDataGrid-columnHeaders": {
-          backgroundColor: "#ffffff",
-          color: "#18181b",
-          borderBottom: "1px solid #e4e4e7",
-        },
+            "& .MuiDataGrid-row": {
+              backgroundColor: "var(--grid-bg)",
+            },
 
-        "& .inventory-header": {
-          backgroundColor: "#ffffff",
-          color: "#18181b",
-          fontWeight: 700,
-        },
+            "& .MuiDataGrid-columnHeaders": {
+              backgroundColor: "var(--grid-bg)",
+              color: "var(--grid-text)",
+              borderBottom: "1px solid var(--grid-border)",
+            },
 
-        "& .MuiDataGrid-columnHeaderTitle": {
-          width: "100%",
-          fontWeight: 700,
-        },
+            "& .MuiDataGrid-columnHeader": {
+              backgroundColor: "var(--grid-bg)",
+              color: "var(--grid-text)",
+            },
 
-        "& .MuiDataGrid-row": {
-          backgroundColor: "#ffffff",
-        },
+            "& .MuiDataGrid-cell": {
+              backgroundColor: "var(--grid-bg)",
+              color: "var(--grid-text)",
+              borderBottom: "1px solid var(--grid-border)",
+              textAlign: "center",
+            },
 
-        "& .MuiDataGrid-cell": {
-          backgroundColor: "#ffffff",
-          color: "#18181b",
-          borderBottom: "1px solid #e4e4e7",
-          textAlign: "center",
-        },
+            "& .MuiDataGrid-row:hover": {
+              backgroundColor: "var(--grid-hover)",
+            },
 
-        "& .MuiDataGrid-row:hover": {
-          backgroundColor: "#f4f4f5",
-        },
+            "& .MuiDataGrid-footerContainer": {
+              backgroundColor: "var(--grid-bg)",
+              color: "var(--grid-text)",
+              borderTop: "1px solid var(--grid-border)",
+            },
 
-        "& .MuiDataGrid-footerContainer": {
-          backgroundColor: "#ffffff",
-          color: "#18181b",
-          borderTop: "1px solid #e4e4e7",
-        },
+            "& .MuiTablePagination-root, & .MuiSvgIcon-root": {
+              color: "var(--grid-icon)",
+            },
 
-        "& .MuiDataGrid-filler": {
-          backgroundColor: "#ffffff",
-        },
-
-        "& .MuiDataGrid-scrollbarFiller": {
-          backgroundColor: "#ffffff",
-        },
-
-        "& .MuiTablePagination-root": {
-          color: "#18181b",
-        },
-
-        "& .MuiSvgIcon-root": {
-          color: "#52525b",
-        },
-
-        ".dark &": {
-          border: "1px solid #3f3f46",
-          backgroundColor: "#18181b",
-          color: "#f4f4f5",
-        },
-
-        ".dark & .MuiDataGrid-main": {
-          backgroundColor: "#18181b",
-        },
-
-        ".dark & .MuiDataGrid-columnHeaders": {
-          backgroundColor: "#18181b",
-          color: "#f4f4f5",
-          borderBottom: "1px solid #3f3f46",
-        },
-
-        ".dark & .inventory-header": {
-          backgroundColor: "#18181b",
-          color: "#f4f4f5",
-        },
-
-        ".dark & .MuiDataGrid-row": {
-          backgroundColor: "#18181b",
-        },
-
-        ".dark & .MuiDataGrid-cell": {
-          backgroundColor: "#18181b",
-          color: "#f4f4f5",
-          borderBottom: "1px solid #555962",
-        },
-
-        ".dark & .MuiDataGrid-row:hover": {
-          backgroundColor: "#27272a",
-        },
-
-        ".dark & .MuiDataGrid-footerContainer": {
-          backgroundColor: "#18181b",
-          color: "#f4f4f5",
-          borderTop: "1px solid #3f3f46",
-        },
-
-        ".dark & .MuiDataGrid-filler": {
-          backgroundColor: "#18181b",
-        },
-
-        ".dark & .MuiDataGrid-scrollbarFiller": {
-          backgroundColor: "#18181b",
-        },
-
-        ".dark & .MuiTablePagination-root": {
-          color: "#f4f4f5",
-        },
-
-        ".dark & .MuiSvgIcon-root": {
-          color: "#a1a1aa",
-        },
-      }}
-    />
+            ".dark &": {
+              "--grid-bg": "#18181b",
+              "--grid-text": "#f4f4f5",
+              "--grid-border": "#3f3f46",
+              "--grid-hover": "#27272a",
+              "--grid-icon": "#a1a1aa",
+            },
+          }}
+        />
+      </div>
+    </div>
   );
 }

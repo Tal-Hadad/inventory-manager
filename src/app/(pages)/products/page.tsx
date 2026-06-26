@@ -1,9 +1,23 @@
-import React from "react";
+import { auth } from "@/auth";
+import PageHeader from "@/components/PageHeader";
+import { getDemoProducts } from "@/lib/products/getDemoProducts";
+import { getUserProducts } from "@/lib/products/getUserProducts";
+import ProductsContent from "./ProductsContent";
 
 type Props = {};
 
-function page({}: Props) {
-  return <div>page</div>;
-}
+export default async function ProductsPage({}: Props) {
+  const session = await auth();
+  const products = session?.user?.id
+    ? await getUserProducts(session.user.id, {})
+    : await getDemoProducts({});
 
-export default page;
+  const isDemo = !session?.user?.id;
+
+  return (
+    <div>
+      <PageHeader name="Products" isDemo={isDemo} showTitle={false} />
+      <ProductsContent product={products} />
+    </div>
+  );
+}

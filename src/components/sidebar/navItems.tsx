@@ -34,14 +34,15 @@ export const navItems: NavItem[] = [
     href: "/users",
     icon: User,
   },
-  {
-    name: "Settings",
-    href: "/settings",
-    icon: Settings,
-  },
+
   {
     name: "Expenses",
     href: "/expenses",
     icon: CircleDollarSign,
+  },
+  {
+    name: "Settings",
+    href: "/settings",
+    icon: Settings,
   },
 ];

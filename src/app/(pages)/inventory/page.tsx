@@ -2,7 +2,7 @@ import PageHeader from "@/components/PageHeader";
 import { auth } from "@/auth";
 import { getDemoProducts } from "@/lib/products/getDemoProducts";
 import { getUserProducts } from "@/lib/products/getUserProducts";
-import InventoryTable from "@/components/InventoryTable";
+import InventoryTable from "@/app/(pages)/inventory/InventoryTable";
 
 type InventoryPageProps = {
   searchParams?: Promise<{
