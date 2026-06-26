@@ -140,3 +140,105 @@
     }
   }
 }
+
+.inventory-grid-popper .MuiPaper-root {
+  background: var(--popover) !important;
+  background-color: var(--popover) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.inventory-grid-popper .MuiPaper-root::before,
+.inventory-grid-popper .MuiPaper-root::after {
+  content: none !important;
+  display: none !important;
+}
+
+.inventory-grid-popper .MuiDataGrid-panel,
+.inventory-grid-popper .MuiDataGrid-panelWrapper,
+.inventory-grid-popper .MuiDataGrid-columnsManagement,
+.inventory-grid-popper .MuiDataGrid-columnsManagementHeader,
+.inventory-grid-popper .MuiDataGrid-columnsManagementFooter,
+.inventory-grid-popper .MuiDataGrid-menuList {
+  background: var(--popover) !important;
+  background-color: var(--popover) !important;
+  background-image: none !important;
+  opacity: 1 !important;
+  color: var(--foreground) !important;
+}
+
+/* Light mode toolbar + inputs */
+.inventory-grid .MuiButtonBase-root,
+.inventory-grid .MuiButton-root,
+.inventory-grid .MuiSvgIcon-root,
+.inventory-grid .MuiInputLabel-root,
+.inventory-grid .MuiFormLabel-root,
+.inventory-grid .MuiOutlinedInput-root,
+.inventory-grid .MuiInputBase-root {
+  color: var(--foreground) !important;
+}
+
+.inventory-grid .MuiInputBase-input.MuiOutlinedInput-input,
+.inventory-grid
+  .MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputTypeSearch {
+  color: var(--foreground) !important;
+  -webkit-text-fill-color: var(--foreground) !important;
+  caret-color: var(--foreground) !important;
+}
+
+.inventory-grid .MuiInputBase-input.MuiOutlinedInput-input::placeholder,
+.inventory-grid
+  .MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputTypeSearch::placeholder {
+  color: var(--muted-foreground) !important;
+  opacity: 1 !important;
+}
+
+/* Dark mode toolbar + popup text/icons */
+.dark .inventory-grid .MuiButtonBase-root,
+.dark .inventory-grid .MuiButton-root,
+.dark .inventory-grid .MuiSvgIcon-root,
+.dark .inventory-grid .MuiSvgIcon-root.MuiSvgIcon-fontSizeSmall,
+.dark .inventory-grid .MuiInputLabel-root,
+.dark .inventory-grid .MuiFormLabel-root,
+.dark .inventory-grid .MuiOutlinedInput-root,
+.dark .inventory-grid .MuiInputBase-root,
+.dark .inventory-grid-popper .MuiButtonBase-root,
+.dark .inventory-grid-popper .MuiButton-root,
+.dark .inventory-grid-popper .MuiSvgIcon-root,
+.dark .inventory-grid-popper .MuiSvgIcon-root.MuiSvgIcon-fontSizeSmall,
+.dark .inventory-grid-popper .MuiInputLabel-root,
+.dark .inventory-grid-popper .MuiFormLabel-root,
+.dark .inventory-grid-popper .MuiOutlinedInput-root,
+.dark .inventory-grid-popper .MuiInputBase-root {
+  color: #ffffff !important;
+}
+
+.dark .inventory-grid .MuiInputBase-input.MuiOutlinedInput-input,
+.dark
+  .inventory-grid
+  .MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputTypeSearch,
+.dark .inventory-grid-popper .MuiInputBase-input.MuiOutlinedInput-input,
+.dark
+  .inventory-grid-popper
+  .MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputTypeSearch {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+
+.dark .inventory-grid .MuiInputBase-input.MuiOutlinedInput-input::placeholder,
+.dark
+  .inventory-grid
+  .MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputTypeSearch::placeholder,
+.dark
+  .inventory-grid-popper
+  .MuiInputBase-input.MuiOutlinedInput-input::placeholder,
+.dark
+  .inventory-grid-popper
+  .MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputTypeSearch::placeholder {
+  color: #d4d4d8 !important;
+  opacity: 1 !important;
+}

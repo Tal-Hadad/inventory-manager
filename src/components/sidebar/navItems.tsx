@@ -1,10 +1,10 @@
 import {
   Archive,
+  ChartNoAxesCombined,
   CircleDollarSign,
   Clipboard,
   Layout,
   Settings,
-  User,
 } from "lucide-react";
 
 export type NavItem = {
@@ -30,9 +30,9 @@ export const navItems: NavItem[] = [
     icon: Clipboard,
   },
   {
-    name: "Users",
-    href: "/users",
-    icon: User,
+    name: "Sales",
+    href: "/sales",
+    icon: ChartNoAxesCombined,
   },
 
   {

@@ -4,37 +4,37 @@ import { DataGridStyles } from "@/components/DataGridStyles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {
   DataGrid,
-  GridColDef,
-  GridColumnVisibilityModel,
+  type GridColDef,
+  type GridColumnVisibilityModel,
 } from "@mui/x-data-grid";
+import { GridToolbar } from "@mui/x-data-grid/internals";
 
-type InventoryRow = {
+type SalesRow = {
   id: string;
-  name: string;
+  soldAt: Date;
+  productId: string;
+  productName: string;
   sku: string | null;
-  price: number;
-  costPrice: number;
-  rating: number | null;
-  stockQuantity: number;
-  reorderPoint: number;
+  quantity: number;
+  unitPrice: number;
+  totalAmount: number;
 };
 
-type InventoryTableProps = {
-  rows: InventoryRow[];
+type SalesTableProps = {
+  rows: SalesRow[];
 };
 
-export default function InventoryTable({ rows }: InventoryTableProps) {
+export default function SalesTable({ rows }: SalesTableProps) {
   const smallScreen = useMediaQuery("(max-width:1200px)");
+
   const columnVisibilityModel: GridColumnVisibilityModel = smallScreen
     ? {
+        productId: false,
         sku: false,
-        costPrice: false,
-        reorderPoint: false,
-        stockStatus: false,
       }
     : {};
 
-  const columns: GridColDef<InventoryRow>[] = [
+  const columns: GridColDef<SalesRow>[] = [
     {
       field: "id",
       headerName: "ID",
@@ -42,6 +42,32 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
       flex: smallScreen ? undefined : 0.7,
       headerAlign: "center",
       align: "center",
+      headerClassName: "inventory-header",
+    },
+    {
+      field: "soldAt",
+      headerName: "Date",
+      width: smallScreen ? 100 : undefined,
+      flex: smallScreen ? undefined : 0.9,
+      headerAlign: "center",
+      align: "center",
+      headerClassName: "inventory-header",
+      renderCell: (params) => {
+        const date =
+          params.row.soldAt instanceof Date
+            ? params.row.soldAt
+            : new Date(String(params.row.soldAt));
+
+        return date.toLocaleDateString();
+      },
+    },
+    {
+      field: "productName",
+      headerName: smallScreen ? "Product" : "Product Name",
+      width: smallScreen ? 140 : undefined,
+      flex: smallScreen ? undefined : 1,
+      headerAlign: "center",
+      align: "left",
       headerClassName: "inventory-header",
     },
     {
@@ -55,17 +81,18 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
       renderCell: (params) => params.row.sku ?? "N/A",
     },
     {
-      field: "name",
-      headerName: "Product Name",
-      width: smallScreen ? 180 : undefined,
-      flex: smallScreen ? undefined : 1,
+      field: "quantity",
+      headerName: smallScreen ? "Qty" : "Quantity",
+      width: smallScreen ? 80 : undefined,
+      flex: smallScreen ? undefined : 0.7,
+      type: "number",
       headerAlign: "center",
-      align: "left",
+      align: "center",
       headerClassName: "inventory-header",
     },
     {
-      field: "price",
-      headerName: "Price",
+      field: "unitPrice",
+      headerName: "Unit Price",
       width: smallScreen ? 90 : undefined,
       flex: smallScreen ? undefined : 0.8,
       type: "number",
@@ -75,8 +102,8 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
       valueFormatter: (value) => `$${Number(value).toFixed(2)}`,
     },
     {
-      field: "costPrice",
-      headerName: "Cost Price",
+      field: "totalAmount",
+      headerName: "Total Amount",
       width: smallScreen ? 100 : undefined,
       flex: smallScreen ? undefined : 0.8,
       type: "number",
@@ -86,60 +113,19 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
       valueFormatter: (value) => `$${Number(value).toFixed(2)}`,
     },
     {
-      field: "rating",
-      headerName: "Rating",
-      width: smallScreen ? 80 : undefined,
-      flex: smallScreen ? undefined : 0.7,
+      field: "productId",
+      headerName: "Product ID",
+      width: smallScreen ? 120 : undefined,
+      flex: smallScreen ? undefined : 0.9,
       headerAlign: "center",
       align: "center",
       headerClassName: "inventory-header",
-      renderCell: (params) =>
-        params.row.rating !== null ? params.row.rating.toFixed(1) : "N/A",
-    },
-    {
-      field: "stockQuantity",
-      headerName: smallScreen ? "StockQTY" : "Stock Quantity",
-      width: smallScreen ? 110 : undefined,
-      flex: smallScreen ? undefined : 0.8,
-      type: "number",
-      headerAlign: "center",
-      align: "center",
-      headerClassName: "inventory-header",
-    },
-    {
-      field: "reorderPoint",
-      headerName: "Reorder Point",
-      width: smallScreen ? 110 : undefined,
-      flex: smallScreen ? undefined : 0.8,
-      type: "number",
-      headerAlign: "center",
-      align: "center",
-      headerClassName: "inventory-header",
-    },
-    {
-      field: "stockStatus",
-      headerName: "Stock Status",
-      width: smallScreen ? 100 : undefined,
-      flex: smallScreen ? undefined : 0.8,
-      sortable: false,
-      filterable: false,
-      headerAlign: "center",
-      align: "center",
-      headerClassName: "inventory-header",
-      renderCell: (params) => {
-        const stock = params.row.stockQuantity;
-        const reorderPoint = params.row.reorderPoint;
-
-        if (stock === 0) return "Out of stock";
-        if (stock <= reorderPoint) return "Low stock";
-        return "In stock";
-      },
     },
   ];
 
   return (
     <div className="mr-6 p-1">
-      <div style={{ width: smallScreen ? 541 : "100%" }}>
+      <div style={{ width: smallScreen ? 591 : "100%" }}>
         <DataGrid
           className="inventory-grid"
           rows={rows}
@@ -148,6 +134,7 @@ export default function InventoryTable({ rows }: InventoryTableProps) {
           disableRowSelectionOnClick
           pageSizeOptions={[10, 25, 50, 100]}
           columnVisibilityModel={columnVisibilityModel}
+          slots={{ toolbar: GridToolbar }}
           showToolbar
           initialState={{
             pagination: {

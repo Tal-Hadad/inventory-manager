@@ -2,7 +2,7 @@ import type { DashboardOverview, DashboardPeriod } from "./dashboardTypes";
 import { buildPurchaseChart } from "./buildPurchaseChart";
 import { buildSalesChart } from "./buildSalesChart";
 
-type DecimalLike = {
+export type DecimalLike = {
   toNumber(): number;
 };
 
@@ -91,7 +91,9 @@ type BuildDashboardOverviewParams<TGroupedExpense extends BaseGroupedExpense> =
     getExpenseCategoryName: (item: TGroupedExpense) => string;
   };
 
-function toNumber(value: number | DecimalLike | null | undefined): number {
+export function toNumber(
+  value: number | DecimalLike | null | undefined,
+): number {
   if (value == null) {
     return 0;
   }
