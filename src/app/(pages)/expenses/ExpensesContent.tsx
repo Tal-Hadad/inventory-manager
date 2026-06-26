@@ -137,8 +137,8 @@ export default function ExpensesContent({ expenses }: ExpensesContentProps) {
   };
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] dark:bg-zinc-950 mt-7">
-      <aside className="rounded-2xl border  p-6 shadow-sm dark:bg-zinc-900 bg-gray-150 ">
+    <div className=" flex flex-col lg:flex-row gap-6  dark:bg-zinc-950 mt-7">
+      <aside className="rounded-2xl  border p-6 shadow-sm dark:bg-zinc-900 bg-gray-150  w-full lg:w-2/7 ">
         <h2 className="text-2xl font-semibold ">Filter by Category and Date</h2>
 
         <div className="mt-6 space-y-5 ">
@@ -199,7 +199,7 @@ export default function ExpensesContent({ expenses }: ExpensesContentProps) {
         </div>
       </aside>
 
-      <section className="rounded-2xl border  p-6 shadow-sm dark:bg-zinc-900 bg-gray-150">
+      <section className="rounded-2xl border p-6 shadow-sm dark:bg-zinc-900 bg-gray-150 w-full ">
         <div className="flex flex-col gap-2 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-xl font-semibold ">Expense distribution</h2>
@@ -224,8 +224,12 @@ export default function ExpensesContent({ expenses }: ExpensesContentProps) {
             No expenses found for the selected filters.
           </div>
         ) : (
-          <div className="h-95 w-full pt-6">
-            <ResponsiveContainer width="100%" height="100%">
+          <div className=" w-full h-100 pt-6 ">
+            <ResponsiveContainer
+              width="100%"
+              height="90%"
+              initialDimension={{ width: 320, height: 320 }}
+            >
               <PieChart>
                 <Pie
                   data={chartData}
