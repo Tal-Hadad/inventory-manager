@@ -185,7 +185,7 @@ export default function GlobalSearch() {
         <div className="absolute left-0 top-[calc(100%+0.5rem)] z-50 w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg dark:border-zinc-800 dark:bg-zinc-950">
           {!query.trim() ? (
             <div className="px-4 py-3 text-sm text-gray-500 dark:text-zinc-400">
-              Search products, inventory, sales, and expenses.
+              Search products, inventory, and sales.
             </div>
           ) : flatResults.length === 0 && !isLoading ? (
             <div className="px-4 py-3 text-sm text-gray-500 dark:text-zinc-400">

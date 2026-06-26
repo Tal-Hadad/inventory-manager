@@ -4,8 +4,8 @@ import * as React from "react";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Sidebar from "@/components/sidebar/Sidebar";
+import Navbar from "@/components/nav/Navbar";
+import Sidebar from "@/components/nav/Sidebar";
 
 type ProvidersProps = React.ComponentProps<typeof NextThemesProvider> & {
   children: React.ReactNode;
