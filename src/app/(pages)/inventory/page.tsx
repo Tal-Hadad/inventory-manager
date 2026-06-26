@@ -22,6 +22,10 @@ export default async function InventoryPage({
     : await getDemoProducts({ search });
 
   const isDemo = !session?.user?.id;
+  const errorMessage = "Failed to load inventory data";
+  if (!products) {
+    throw new Error(errorMessage);
+  }
 
   return (
     <div>

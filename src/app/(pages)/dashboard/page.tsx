@@ -17,6 +17,10 @@ export default async function DashboardPage() {
     ? await getUserDashboardOverview(session.user.id, "last30Days")
     : await getDemoDashboardOverview("last30Days");
 
+  const errorMessage = "Failed to load dashboard data";
+  if (!data) {
+    throw new Error(errorMessage);
+  }
   return (
     <div>
       <PageHeader name="Dashboard" isDemo={data.isDemo} showTitle={false} />

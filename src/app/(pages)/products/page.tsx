@@ -14,6 +14,10 @@ export default async function ProductsPage({}: Props) {
 
   const isDemo = !session?.user?.id;
 
+  const errorMessage = "Failed to load products";
+  if (!products) {
+    throw new Error(errorMessage);
+  }
   return (
     <div>
       <PageHeader name="Products" isDemo={isDemo} showTitle={false} />

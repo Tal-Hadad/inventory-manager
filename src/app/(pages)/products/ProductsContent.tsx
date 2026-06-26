@@ -47,6 +47,7 @@ export default function ProductsContent({ product }: ProductsContentProps) {
         </button>
       </div>
       {/* product list */}
+
       <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-between">
         {product.map((product) => (
           <div
