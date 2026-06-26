@@ -5,7 +5,7 @@ import { ChangeEvent, SubmitEvent, useState } from "react";
 type CreateProductModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  onCreate: (formData: CreateProductInput) => void | Promise<void>;
+  onCreate: (formData: CreateProductInput) => Promise<unknown>;
 };
 
 type ProductFormState = {
@@ -47,7 +47,7 @@ export default function CreateProductModal({
     return parseInt(value, 10);
   };
 
-  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
     setError(null);
 
