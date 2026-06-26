@@ -22,7 +22,7 @@ export default function EstimatedProfitCard({
   const isPositive = totalEstimatedProfit >= 0;
 
   return (
-    <div className="row-span-1 xl:row-span-2 rounded-2xl bg-white px-7 shadow-md dark:bg-zinc-900">
+    <div className="row-span-1 xl:row-span-2 rounded-2xl bg-white px-7 shadow-md dark:bg-zinc-900 border ">
       <p className="text-lg font-semibold pt-5 pb-2">Estimated Profit</p>
       <hr />
       <div className="flex items-start justify-between">

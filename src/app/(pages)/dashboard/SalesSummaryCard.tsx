@@ -108,7 +108,7 @@ export default function SalesSummeryCard({
     : "$0";
 
   return (
-    <div className="row-span-3 rounded-2xl pb-16 shadow-md dark:bg-zinc-900 xl:row-span-6">
+    <div className="row-span-3 rounded-2xl pb-16 shadow-md dark:bg-zinc-900 xl:row-span-6 border">
       <h3 className="px-7 pt-5 pb-2 text-lg font-semibold">Sales Summary</h3>
       <hr />
 

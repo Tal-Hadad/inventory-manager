@@ -21,7 +21,7 @@ export default function PurchaseSummaryCard({
 }: PurchaseSummaryCardProps) {
   return (
     <>
-      <div className="row-span-2 xl:row-span-3 col-span-1 md:col-span-2 rounded-2xl xl:col-span-1 pb-16 shadow-md dark:bg-zinc-900">
+      <div className="border row-span-2 xl:row-span-3 col-span-1 md:col-span-2 rounded-2xl xl:col-span-1 pb-16 shadow-md dark:bg-zinc-900">
         <h3 className="px-7 pt-5 pb-2 text-lg font-semibold">
           Purchase Summary
         </h3>

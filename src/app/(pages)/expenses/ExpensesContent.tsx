@@ -138,7 +138,7 @@ export default function ExpensesContent({ expenses }: ExpensesContentProps) {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] dark:bg-zinc-950 mt-7">
-      <aside className="rounded-2xl border  p-6 shadow-sm ">
+      <aside className="rounded-2xl border  p-6 shadow-sm dark:bg-zinc-900 bg-gray-150 ">
         <h2 className="text-2xl font-semibold ">Filter by Category and Date</h2>
 
         <div className="mt-6 space-y-5 ">
@@ -150,7 +150,7 @@ export default function ExpensesContent({ expenses }: ExpensesContentProps) {
               id="category"
               value={selectedCategory}
               onChange={(event) => setSelectedCategory(event.target.value)}
-              className="w-full rounded-xl border border-zinc-600 px-3 py-2.5 text-sm  outline-none transition focus:border-slate-500 dark:bg-[#0A0A0A]"
+              className="w-full rounded-xl border border-zinc-600 px-3 py-2.5 text-sm  outline-none transition focus:border-slate-500 dark:bg-zinc-900 bg-gray-150"
             >
               <option value="All">All</option>
               {categories.map((category) => (
@@ -199,7 +199,7 @@ export default function ExpensesContent({ expenses }: ExpensesContentProps) {
         </div>
       </aside>
 
-      <section className="rounded-2xl border  p-6 shadow-sm">
+      <section className="rounded-2xl border  p-6 shadow-sm dark:bg-zinc-900 bg-gray-150">
         <div className="flex flex-col gap-2 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-xl font-semibold ">Expense distribution</h2>
@@ -216,15 +216,15 @@ export default function ExpensesContent({ expenses }: ExpensesContentProps) {
         </div>
 
         {hasInvalidDateRange ? (
-          <div className="flex h-90 items-center justify-center text-sm text-red-600">
+          <div className="flex h-95 items-center justify-center text-sm text-red-600 ">
             End date must be greater than or equal to start date.
           </div>
         ) : chartData.length === 0 ? (
-          <div className="flex h-90 items-center justify-center text-sm ">
+          <div className="flex h-95 items-center justify-center text-sm  ">
             No expenses found for the selected filters.
           </div>
         ) : (
-          <div className="h-90 w-full pt-6">
+          <div className="h-95 w-full pt-6">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie

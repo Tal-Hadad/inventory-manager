@@ -36,7 +36,7 @@ export default function LowStockProductsCard({
   const hasProducts = products.length > 0;
 
   return (
-    <div className="row-span-3 xl:row-span-6 dark:bg-zinc-900 shadow-md rounded-2xl flex min-h-0 flex-col">
+    <div className="row-span-3 xl:row-span-6 dark:bg-zinc-900 shadow-md rounded-2xl flex min-h-0 border flex-col">
       <div className="flex items-center justify-between px-7 pt-5 pb-3">
         <div>
           <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
