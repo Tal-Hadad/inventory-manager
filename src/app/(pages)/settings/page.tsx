@@ -1,9 +1,14 @@
-import React from "react";
+import PageHeader from "@/components/PageHeader";
+import SettingsForm from "./settingsForm";
+import { getCurrentUserSettings } from "@/lib/settings/getCurrentUserSettings";
 
-type Props = {};
+export default async function SettingsPage() {
+  const user = await getCurrentUserSettings();
 
-const page = (props: Props) => {
-  return <div>page</div>;
-};
-
-export default page;
+  return (
+    <div className="space-y-6">
+      <PageHeader name="Settings" isDemo={false} />
+      <SettingsForm user={user} />
+    </div>
+  );
+}

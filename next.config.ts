@@ -9,12 +9,12 @@ const imageHostnames = [
 const nextConfig: NextConfig = {
   reactCompiler: true,
   images: {
-    remotePatterns: imageHostnames.map((hostname) => ({
-      protocol: "https",
-      hostname,
-      port: "",
-      pathname: "/**",
-    })),
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
 };
 

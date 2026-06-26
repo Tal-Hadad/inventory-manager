@@ -24,29 +24,15 @@ export default function ProductsContent({ product }: ProductsContentProps) {
 
   return (
     <div className="mx-auto pb-5 w-full">
-      <div className="mb-6">
-        <div className="flex items-center border-2 border-gray-200 rounded dark:bg-zinc-950">
-          <SearchIcon className="w-5 h-5 text-gray-500 m-2 " />
-          <input
-            className="w-full py-2 px-4 rounded dark:bg-zinc-900 "
-            placeholder="Search products..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-      </div>
-      {/* header */}
-
       <div className="flex justify-between items-center mb-6">
         <h1 className="mb-2 text-2xl font-semibold">Products</h1>
         <button
-          className="flex items-center bg-blue-500 hover:bg-blue-700 text-gray-200 font-bold py-2 px-4 rounded"
+          className="flex items-center bg-blue-500 hover:bg-blue-700 text-gray-200 font-bold py-2 px-4 rounded mr-4 cursor-pointer"
           onClick={() => setIsModalOpen(true)}
         >
           <PlusCircleIcon className="w-5 h-5 mr-2" /> Create Product
         </button>
       </div>
-      {/* product list */}
 
       <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-between">
         {product.map((product) => (
