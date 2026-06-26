@@ -2,6 +2,7 @@
 
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { redirect } from "next/navigation";
 
 export type CurrentUserSettings = {
   id: string;
@@ -15,7 +16,7 @@ export async function getCurrentUserSettings(): Promise<CurrentUserSettings> {
   const session = await auth();
 
   if (!session?.user?.id) {
-    throw new Error("Unauthorized");
+    redirect("/login");
   }
 
   const user = await prisma.user.findUnique({

@@ -4,9 +4,7 @@ import { getDemoProducts } from "@/lib/products/getDemoProducts";
 import { getUserProducts } from "@/lib/products/getUserProducts";
 import ProductsContent from "./ProductsContent";
 
-type Props = {};
-
-export default async function ProductsPage({}: Props) {
+export default async function ProductsPage() {
   const session = await auth();
   const products = session?.user?.id
     ? await getUserProducts(session.user.id, {})
