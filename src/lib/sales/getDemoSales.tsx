@@ -4,10 +4,9 @@ import { prisma } from "@/lib/prisma";
 import {
   toNumber,
   type DecimalLike,
-} from "@/lib/dashboard/buildDashboardOverview"; // ADDED
+} from "@/lib/dashboard/buildDashboardOverview";
 
 export type GetDemoSalesParams = {
-  search?: string;
   startDate?: Date;
   endDate?: Date;
 };
@@ -26,36 +25,15 @@ export type DemoSalesRow = {
 export async function getDemoSales(
   params: GetDemoSalesParams = {},
 ): Promise<DemoSalesRow[]> {
-  const { search, startDate, endDate } = params;
-  const normalizedSearch = search?.trim() || undefined;
+  const { startDate, endDate } = params;
 
   const sales = await prisma.demoSale.findMany({
     where: {
-      ...(startDate && endDate
+      ...(startDate || endDate
         ? {
             soldAt: {
-              gte: startDate,
-              lt: endDate,
-            },
-          }
-        : {}),
-      ...(normalizedSearch
-        ? {
-            product: {
-              OR: [
-                {
-                  name: {
-                    contains: normalizedSearch,
-                    mode: "insensitive",
-                  },
-                },
-                {
-                  sku: {
-                    contains: normalizedSearch,
-                    mode: "insensitive",
-                  },
-                },
-              ],
+              ...(startDate ? { gte: startDate } : {}),
+              ...(endDate ? { lt: endDate } : {}),
             },
           }
         : {}),

@@ -1,17 +1,10 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/auth"; // ADDED
 import {
   toNumber,
   type DecimalLike,
 } from "@/lib/dashboard/buildDashboardOverview";
-
-export type GetUserSalesParams = {
-  search?: string;
-  startDate?: Date;
-  endDate?: Date;
-};
 
 export type UserSalesRow = {
   id: string;
@@ -24,46 +17,23 @@ export type UserSalesRow = {
   totalAmount: number;
 };
 
+type GetUserSalesParams = {
+  startDate?: Date;
+  endDate?: Date;
+};
+
 export async function getUserSales(
-  params: GetUserSalesParams = {},
-): Promise<UserSalesRow[]> {
-  const session = await auth();
-
-  if (!session?.user?.id) {
-    throw new Error("Unauthorized");
-  }
-
-  const { search, startDate, endDate } = params;
-  const normalizedSearch = search?.trim() || undefined;
-
+  userId: string,
+  { startDate, endDate }: GetUserSalesParams = {},
+) {
   const sales = await prisma.sale.findMany({
     where: {
-      userId: session.user.id,
-      ...(startDate && endDate
+      userId,
+      ...(startDate || endDate
         ? {
             soldAt: {
-              gte: startDate,
-              lt: endDate,
-            },
-          }
-        : {}),
-      ...(normalizedSearch
-        ? {
-            product: {
-              OR: [
-                {
-                  name: {
-                    contains: normalizedSearch,
-                    mode: "insensitive",
-                  },
-                },
-                {
-                  sku: {
-                    contains: normalizedSearch,
-                    mode: "insensitive",
-                  },
-                },
-              ],
+              ...(startDate ? { gte: startDate } : {}),
+              ...(endDate ? { lt: endDate } : {}),
             },
           }
         : {}),

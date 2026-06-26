@@ -16,8 +16,8 @@ export default async function SalesPage({ searchParams }: SalesPageProps) {
   const search = params?.search;
 
   const sales = session?.user?.id
-    ? await getUserSales({ search })
-    : await getDemoSales({ search });
+    ? await getUserSales(session.user.id)
+    : await getDemoSales();
 
   const isDemo = !session?.user?.id;
   const errorMessage = "Failed to load sales data";
