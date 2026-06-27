@@ -4,22 +4,12 @@ import { getDemoProducts } from "@/lib/products/getDemoProducts";
 import { getUserProducts } from "@/lib/products/getUserProducts";
 import InventoryTable from "@/app/(pages)/inventory/InventoryTable";
 
-type InventoryPageProps = {
-  searchParams?: Promise<{
-    search?: string;
-  }>;
-};
-
-export default async function InventoryPage({
-  searchParams,
-}: InventoryPageProps) {
+export default async function InventoryPage() {
   const session = await auth();
-  const params = await searchParams;
-  const search = params?.search;
 
   const products = session?.user?.id
-    ? await getUserProducts(session.user.id, { search })
-    : await getDemoProducts({ search });
+    ? await getUserProducts(session.user.id)
+    : await getDemoProducts();
 
   const isDemo = !session?.user?.id;
   const errorMessage = "Failed to load inventory data";

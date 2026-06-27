@@ -1,12 +1,6 @@
 import { prisma } from "@/lib/prisma";
 
-type GetDemoProductsParams = {
-  search?: string;
-};
-
-export async function getDemoProducts({ search }: GetDemoProductsParams) {
-  const normalizedSearch = search?.trim();
-
+export async function getDemoProducts() {
   const products = await prisma.demoProduct.findMany({
     select: {
       id: true,
@@ -20,24 +14,6 @@ export async function getDemoProducts({ search }: GetDemoProductsParams) {
       imageKey: true,
     },
 
-    where: normalizedSearch
-      ? {
-          OR: [
-            {
-              name: {
-                contains: normalizedSearch,
-                mode: "insensitive",
-              },
-            },
-            {
-              sku: {
-                contains: normalizedSearch,
-                mode: "insensitive",
-              },
-            },
-          ],
-        }
-      : undefined,
     orderBy: {
       name: "asc",
     },
