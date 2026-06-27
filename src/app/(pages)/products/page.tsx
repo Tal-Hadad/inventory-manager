@@ -8,7 +8,7 @@ export default async function ProductsPage() {
   const session = await auth();
   const products = session?.user?.id
     ? await getUserProducts(session.user.id, {})
-    : await getDemoProducts({});
+    : await getDemoProducts();
 
   const isDemo = !session?.user?.id;
 
