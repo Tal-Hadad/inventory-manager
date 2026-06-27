@@ -1,8 +1,8 @@
 "use client";
 
 import { Menu, Search } from "lucide-react";
-import ThemeToggle from "../ui/ThemeToggle";
-import ProfileCircle from "../ProfileCircle";
+import ThemeToggle from "../ThemeToggle";
+import ProfileCircle from "./ProfileButton";
 import GlobalSearch from "./GlobalSearch";
 type NavbarProps = {
   isExpanded: boolean;
