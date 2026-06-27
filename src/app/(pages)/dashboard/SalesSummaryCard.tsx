@@ -21,7 +21,7 @@ interface SalesSummaryCardProps {
   initialSalesChart: DashboardOverview["salesChart"];
 }
 
-export default function SalesSummeryCard({
+export default function SalesSummaryCard({
   initialSalesSummary,
   initialSalesChart,
 }: SalesSummaryCardProps) {

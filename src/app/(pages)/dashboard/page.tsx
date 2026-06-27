@@ -1,13 +1,12 @@
 import { auth } from "@/auth";
 import PopularProductsCard from "@/app/(pages)/dashboard/PopularProductsCard";
-import SalesSummeryCard from "@/app/(pages)/dashboard/SalesSummaryCard";
+import SalesSummaryCard from "@/app/(pages)/dashboard/SalesSummaryCard";
 import { getDemoDashboardOverview } from "@/lib/dashboard/getDemoDashboardOverview";
 import { getUserDashboardOverview } from "@/lib/dashboard/getUserDashboardOverview";
 import PurchaseSummaryCard from "./PurchaseSummaryCard";
 import ExpenseSummaryCard from "./ExpenseSummaryCard";
 import LowStockProductsCard from "./LowStockProductsCard";
 import EstimatedProfitCard from "./EstimatedProfitCard";
-import Page from "@/app/page";
 import PageHeader from "@/components/PageHeader";
 
 export default async function DashboardPage() {
@@ -32,7 +31,7 @@ export default async function DashboardPage() {
         <PopularProductsCard products={data.popularProducts} />
         <LowStockProductsCard lowStockSummary={data.lowStockSummary} />
 
-        <SalesSummeryCard
+        <SalesSummaryCard
           initialSalesSummary={data.salesSummary}
           initialSalesChart={data.salesChart}
         />

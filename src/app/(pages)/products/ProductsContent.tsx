@@ -41,7 +41,7 @@ export default function ProductsContent({ product }: ProductsContentProps) {
             className="border shadow rounded-md p-4 max-w-full w-full mx-auto"
           >
             <div className="flex flex-col items-center">
-              <div className="flex h-15 w-15 items-center justify-center overflow-hidden rounded-md bg-zinc-100 dark:bg-zinc-800">
+              <div className="flex h-25 w-35 items-center justify-center overflow-hidden rounded-md bg-zinc-100 dark:bg-zinc-800">
                 {product.imageKey ? (
                   <img
                     src={product.imageKey}

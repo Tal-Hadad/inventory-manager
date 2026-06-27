@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navItems } from "./navItems";
-import { Package2 } from "lucide-react";
 import Image from "next/image";
 
 function isNavItemActive(pathname: string, href: string) {
@@ -27,13 +26,7 @@ export default function Sidebar({ isExpanded }: SidebarProps) {
           href="/dashboard"
           className={`flex items-center ${isExpanded ? "gap-3" : "justify-start"}`}
         >
-          <Image
-            src="/logo.png"
-            height={40}
-            width={40}
-            alt="logo"
-            className="bg-red"
-          />
+          <Image src="/logo.png" height={40} width={40} alt="logo" priority />
 
           <h1
             className={`truncate text-lg font-extrabold ${isExpanded ? "hidden md:block" : "hidden"}`}
