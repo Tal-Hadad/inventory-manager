@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const imageHostnames = [
   "lh3.googleusercontent.com",
@@ -9,12 +10,15 @@ const imageHostnames = [
 const nextConfig: NextConfig = {
   reactCompiler: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**",
-      },
-    ],
+    remotePatterns: imageHostnames.map((hostname) => ({
+      protocol: "https",
+      hostname,
+      port: "",
+      pathname: "/**",
+    })),
+  },
+  turbopack: {
+    root: path.resolve(__dirname),
   },
 };
 
