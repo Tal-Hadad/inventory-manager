@@ -36,6 +36,8 @@ Dark mode-friendly dashboard UI
 Built With
 This project was built with a server-first Next.js approach using Prisma for database queries and Auth.js for authentication. Interactive parts like charts and data tables are handled with client components, while most data loading stays on the server for cleaner architecture and better performance.
 
+SQL diagram - https://mermaid.ai/d/96660f0c-a0f3-42e2-9082-4c8709dd5add
+
 Why it stands out
 This project showcases full-stack development skills, typed data modeling, reusable UI patterns, and practical product decisions. It was built to reflect how a real internal dashboard or lightweight SaaS inventory tool could be structured.
 
