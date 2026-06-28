@@ -1,7 +1,7 @@
 "use client";
 
 import Rating from "@/components/Rating";
-import { Package, PlusCircleIcon, SearchIcon } from "lucide-react";
+import { Package, PlusCircleIcon } from "lucide-react";
 import { useState } from "react";
 import CreateProductModal from "./CreateProductModal";
 import { createProduct } from "@/lib/products/createProduct";
