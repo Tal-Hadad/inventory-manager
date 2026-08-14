@@ -27,16 +27,35 @@ async function main() {
   await prisma.demoSale.deleteMany();
   await prisma.demoPurchase.deleteMany();
   await prisma.demoExpense.deleteMany();
-  await prisma.demoProduct.deleteMany();
 
-  const createdProducts = await Promise.all(
-    demoProducts.map((product) =>
-      prisma.demoProduct.create({
-        data: product,
-      }),
-    ),
+  const existingProducts = await prisma.demoProduct.findMany({
+    select: {
+      id: true,
+      sku: true,
+    },
+  });
+
+  const existingProductIdBySku = new Map(
+    existingProducts
+      .filter((product) => product.sku)
+      .map((product) => [product.sku as string, product.id]),
   );
 
+  const createdProducts = await Promise.all(
+    demoProducts.map((product) => {
+      const existingId = existingProductIdBySku.get(product.sku);
+
+      if (existingId) {
+        return prisma.demoProduct.findUniqueOrThrow({
+          where: { id: existingId },
+        });
+      }
+
+      return prisma.demoProduct.create({
+        data: product,
+      });
+    }),
+  );
   const productIdBySku = new Map(
     createdProducts
       .filter((product) => product.sku)
@@ -49,7 +68,7 @@ async function main() {
       quantity: sale.quantity,
       unitPrice: sale.unitPrice,
       totalAmount: sale.totalAmount,
-      soldAt: sale.soldAt,
+      soldAt: daysAgo(Math.floor(Math.random() * 30)),
     })),
   });
 
@@ -59,7 +78,7 @@ async function main() {
       quantity: purchase.quantity,
       unitCost: purchase.unitCost,
       totalCost: purchase.totalCost,
-      purchasedAt: purchase.purchasedAt,
+      purchasedAt: daysAgo(Math.floor(Math.random() * 30)),
     })),
   });
 
@@ -68,7 +87,7 @@ async function main() {
       category: expense.category,
       description: expense.description,
       amount: expense.amount,
-      spentAt: expense.spentAt,
+      spentAt: daysAgo(Math.floor(Math.random() * 30)),
     })),
   });
 

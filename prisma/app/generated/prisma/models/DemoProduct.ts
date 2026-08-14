@@ -293,11 +293,11 @@ export type DemoProductOrderByWithRelationInput = {
 
 export type DemoProductWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  sku?: string
   AND?: Prisma.DemoProductWhereInput | Prisma.DemoProductWhereInput[]
   OR?: Prisma.DemoProductWhereInput[]
   NOT?: Prisma.DemoProductWhereInput | Prisma.DemoProductWhereInput[]
   name?: Prisma.StringFilter<"DemoProduct"> | string
-  sku?: Prisma.StringNullableFilter<"DemoProduct"> | string | null
   unit?: Prisma.StringNullableFilter<"DemoProduct"> | string | null
   price?: Prisma.DecimalFilter<"DemoProduct"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   costPrice?: Prisma.DecimalNullableFilter<"DemoProduct"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -307,7 +307,7 @@ export type DemoProductWhereUniqueInput = Prisma.AtLeast<{
   imageKey?: Prisma.StringNullableFilter<"DemoProduct"> | string | null
   sales?: Prisma.DemoSaleListRelationFilter
   purchases?: Prisma.DemoPurchaseListRelationFilter
-}, "id">
+}, "id" | "sku">
 
 export type DemoProductOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
