@@ -21,6 +21,15 @@ function daysAgo(days: number) {
   return date;
 }
 
+// CHANGED: shifts historical seed dates forward while preserving their spacing.
+function shiftDateToCurrentRange(date: Date, latestSeedDate: Date) {
+  const daysFromLatest = Math.floor(
+    (latestSeedDate.getTime() - date.getTime()) / (1000 * 60 * 60 * 24),
+  );
+
+  return daysAgo(daysFromLatest);
+}
+
 async function main() {
   console.log("🌱 seeding demo data...");
 
@@ -62,16 +71,25 @@ async function main() {
       .map((product) => [product.sku as string, product.id]),
   );
 
+  // CHANGED: keep the full historical dataset, shifted so its latest records are today.
+  const latestSaleDate = demoSales[demoSales.length - 1]?.soldAt;
+
+  if (!latestSaleDate) {
+    throw new Error("No demo sales available to seed.");
+  }
+
   await prisma.demoSale.createMany({
     data: demoSales.map((sale) => ({
       productId: productIdBySku.get(sale.sku)!,
       quantity: sale.quantity,
       unitPrice: sale.unitPrice,
       totalAmount: sale.totalAmount,
-      soldAt: daysAgo(Math.floor(Math.random() * 30)),
+
+      // CHANGED: removes the `Math.random() * 30` override.
+      // Gives today’s dashboard both a current and a previous period.
+      soldAt: shiftDateToCurrentRange(sale.soldAt, latestSaleDate),
     })),
   });
-
   await prisma.demoPurchase.createMany({
     data: demoPurchases.map((purchase) => ({
       productId: productIdBySku.get(purchase.sku)!,
