@@ -176,7 +176,7 @@ model Expense {
 model DemoProduct {
   id            String    @id @default(cuid())
   name          String
-  sku           String?
+  sku           String?   @unique
   unit          String?
   price         Decimal   @db.Decimal(10, 2)
   costPrice     Decimal?  @db.Decimal(10, 2) @map("cost_price")
