@@ -38,7 +38,7 @@ export default function SalesSummaryCard({
     last90Days: "Last 90 Days",
     last12Months: "Last 12 Months",
   };
-  const [period, setPeriod] = useState<DashboardPeriod>("last30Days");
+  const [period, setPeriod] = useState<DashboardPeriod>("last90Days");
   const [salesSummary, setSalesSummary] = useState(initialSalesSummary);
   const [salesChart, setSalesChart] = useState(initialSalesChart);
   const [isLoading, setIsLoading] = useState(false);
